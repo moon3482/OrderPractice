@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="isHot"
+            type="java.lang.Boolean" />
+        <variable
+            name="isCaffeine"
+            type="java.lang.Boolean" />
+        <variable
+            name="icePortion"
+            type="com.example.myapplication.model.IcePortion" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/temp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기본"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/bg_divider_radio_group"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_selector_detail_option"
+                android:button="null"
+                android:text="HOT"
+                android:textAlignment="center"
+                android:textColor="@drawable/text_selector_detail_option"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:checked="true" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_selector_detail_option"
+                android:button="null"
+                android:text="ICE"
+                android:textAlignment="center"
+                android:textColor="@drawable/text_selector_detail_option"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/caffeine_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="디카페인"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/bg_divider_radio_group"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_selector_detail_option"
+                android:button="null"
+                android:text="카페인"
+                android:textAlignment="center"
+                android:textColor="@drawable/text_selector_detail_option"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_selector_detail_option"
+                android:button="null"
+                android:text="디카페인"
+                android:textAlignment="center"
+                android:textColor="@drawable/text_selector_detail_option"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:checked="true" />
+        </RadioGroup>
+
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/ice_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="얼음"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <androidx.legacy.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="10dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/bg_divider_radio_group"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_selector_detail_option"
+                android:button="null"
+                android:text="적게"
+                android:textAlignment="center"
+                android:textColor="@drawable/text_selector_detail_option"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_selector_detail_option"
+                android:button="null"
+                android:text="보통"
+                android:textAlignment="center"
+                android:textColor="@drawable/text_selector_detail_option"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:checked="true" />
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_selector_detail_option"
+                android:button="null"
+                android:text="많이"
+                android:textAlignment="center"
+                android:textColor="@drawable/text_selector_detail_option"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+    </LinearLayout>
+</layout>
