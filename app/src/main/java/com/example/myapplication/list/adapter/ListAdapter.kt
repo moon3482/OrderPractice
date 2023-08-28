@@ -5,14 +5,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.model.ListMenu
 
 class ListAdapter(
-    private val menuList: List<ListMenu>,
-) : RecyclerView.Adapter<ListMenuViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListMenuViewHolder =
-        ListMenuViewHolder(parent)
+    private val menuList: List<ListMenu?>,
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        when (viewType) {
+            1 -> ListMenuViewHolder(parent)
+            else -> DividerViewHolder(parent)
+        }
 
     override fun getItemCount(): Int = menuList.size
 
-    override fun onBindViewHolder(holder: ListMenuViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val listMenu = menuList[position]
+        when (holder) {
+            is ListMenuViewHolder -> {
+                holder.bind(listMenu)
+            }
 
+            else -> Unit
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int = when (menuList[position]) {
+        is ListMenu -> 1
+        else -> 2
     }
 }
