@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="20dp"
-        android:paddingTop="50dp"
+        android:paddingVertical="20dp"
         tools:context=".detail.adapter.DetailFragment">
 
         <LinearLayout
@@ -44,7 +44,7 @@
             android:id="@+id/detailWidget"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintBottom_toTopOf="@id/sendOrder"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +54,12 @@
             android:id="@+id/sendOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_button_radius_10"
+            android:paddingVertical="10dp"
+            android:text="주문"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
