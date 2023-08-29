@@ -1,32 +1,26 @@
 package com.example.myapplication.order
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.myapplication.R
+import androidx.fragment.app.Fragment
+import com.example.myapplication.databinding.FragmentOrderBinding
 
 class OrderFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = OrderFragment()
-    }
-
-    private lateinit var viewModel: OrderViewModel
+    private var _binding: FragmentOrderBinding? = null
+    private val binding
+        get() = checkNotNull(_binding) {
+            "FragmentOrderBinding is Null"
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_order, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
-        // TODO: Use the ViewModel
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
+        _binding = FragmentOrderBinding.inflate(layoutInflater)
+        return binding.root
     }
 
 }
