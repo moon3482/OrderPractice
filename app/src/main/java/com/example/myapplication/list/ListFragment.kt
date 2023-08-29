@@ -7,22 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentListBinding
+import com.example.myapplication.detail.DetailFragment
 import com.example.myapplication.intro.IntroFragment
 import com.example.myapplication.list.adapter.ListAdapter
 import com.example.myapplication.model.ListMenu
+import com.example.myapplication.order.OrderFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), ListUiEvent {
     private var _binding: FragmentListBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
             "FragmentListBinding is Null"
         }
-    private lateinit var viewModel: ListViewModel
     private lateinit var backPressedCallback: OnBackPressedCallback
 
     override fun onAttach(context: Context) {
@@ -55,12 +58,12 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(this)[ListViewModel::class.java]
         with(binding) {
             lifecycleOwner = this@ListFragment
             val menuList = getMenuList()
-            val listAdapter = ListAdapter(menuList)
+            val listAdapter = ListAdapter(menuList).apply {
+                setOnClickMenu(this@ListFragment::onClickMenu)
+            }
             listRecyclerView.adapter = listAdapter
             toolbar.setNavigationOnClickListener {
                 goToIntro()
@@ -93,17 +96,19 @@ class ListFragment : Fragment() {
     }
 
     private fun goToIntro() {
-        parentFragmentManager
-            .beginTransaction()
-            .replace(
-                R.id.fragmentContainerView,
-                IntroFragment.newInstance(),
-            ).commit()
+        parentFragmentManager.commit {
+            replace<IntroFragment>(
+                containerViewId = R.id.fragmentContainerView,
+            )
+        }
     }
 
-    companion object {
-        fun newInstance() = ListFragment()
+    override fun onClickMenu(listMenu: ListMenu?) {
+        parentFragmentManager.commit {
+            replace<DetailFragment>(
+                containerViewId = R.id.fragmentContainerView,
+                args = DetailFragment.arguments(listMenu)
+            )
+        }
     }
-
-
 }

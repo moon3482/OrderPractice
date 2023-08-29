@@ -7,6 +7,7 @@ import com.example.myapplication.model.ListMenu
 class ListAdapter(
     private val menuList: List<ListMenu?>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var onClickMenu: ((ListMenu?) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
             1 -> ListMenuViewHolder(parent)
@@ -20,6 +21,9 @@ class ListAdapter(
         when (holder) {
             is ListMenuViewHolder -> {
                 holder.bind(listMenu)
+                holder.itemView.setOnClickListener {
+                    onClickMenu?.invoke(listMenu)
+                }
             }
 
             else -> Unit
@@ -29,5 +33,9 @@ class ListAdapter(
     override fun getItemViewType(position: Int): Int = when (menuList[position]) {
         is ListMenu -> 1
         else -> 2
+    }
+
+    fun setOnClickMenu(onClickMenu: ((ListMenu?) -> Unit)) {
+        this.onClickMenu = onClickMenu
     }
 }
