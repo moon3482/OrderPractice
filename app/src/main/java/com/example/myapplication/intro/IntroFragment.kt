@@ -51,9 +51,4 @@ class IntroFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-    companion object {
-        fun newInstance() = IntroFragment()
-    }
-
 }
