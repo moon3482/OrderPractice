@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.myapplication.detail.DetailViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="20dp"
         android:paddingVertical="20dp"
-        tools:context=".detail.adapter.DetailFragment">
+        tools:context=".detail.DetailFragment">
 
         <LinearLayout
             android:id="@+id/selectedMenu"
@@ -24,6 +32,7 @@
                 android:id="@+id/selectedMenuName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{vm.selectedListMenu.name}"
                 tools:text="메뉴이름" />
 
             <androidx.legacy.widget.Space
@@ -36,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                bind:price="@{vm.selectedListMenu.price}"
                 tools:text="1000원" />
         </LinearLayout>
 
