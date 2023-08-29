@@ -1,22 +1,18 @@
 package com.example.myapplication.list
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentListBinding
 import com.example.myapplication.detail.DetailFragment
 import com.example.myapplication.intro.IntroFragment
 import com.example.myapplication.list.adapter.ListAdapter
 import com.example.myapplication.model.ListMenu
-import com.example.myapplication.order.OrderFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,22 +22,6 @@ class ListFragment : Fragment(), ListUiEvent {
         get() = checkNotNull(_binding) {
             "FragmentListBinding is Null"
         }
-    private lateinit var backPressedCallback: OnBackPressedCallback
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        backPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                goToIntro()
-            }
-        }
-        requireActivity()
-            .onBackPressedDispatcher
-            .addCallback(
-                this,
-                backPressedCallback,
-            )
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,7 +46,7 @@ class ListFragment : Fragment(), ListUiEvent {
             }
             listRecyclerView.adapter = listAdapter
             toolbar.setNavigationOnClickListener {
-                goToIntro()
+                requireActivity().onBackPressed()
             }
         }
     }
