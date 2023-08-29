@@ -20,8 +20,8 @@ sealed class OrderMenu{
         override val price: Int,
         val ice:IcePortion,
     ):OrderMenu(){
-        override val isHot: Boolean = false
-        override val isCaffeine: Boolean = false
+        override val isHot: Boolean? = null
+        override val isCaffeine: Boolean? = null
     }
 
     data class Tea(
