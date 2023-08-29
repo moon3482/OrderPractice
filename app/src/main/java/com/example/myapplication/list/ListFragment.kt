@@ -71,9 +71,9 @@ class ListFragment : Fragment(), ListUiEvent {
         }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        backPressedCallback.remove()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun getMenuList(): List<ListMenu?> {

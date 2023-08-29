@@ -42,6 +42,11 @@ class DetailFragment : Fragment() {
             viewModel.setSelectedListMenu(listMenu)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         fun arguments(listMenu: ListMenu?): Bundle = Bundle().apply {
             putSerializable("listMenu", listMenu)
