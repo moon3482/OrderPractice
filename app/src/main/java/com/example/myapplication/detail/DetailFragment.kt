@@ -16,7 +16,7 @@ class DetailFragment : Fragment() {
         get() = checkNotNull(_binding) {
             "FragmentDetailBinding is Null"
         }
-    val viewModel: DetailViewModel by viewModels()
+    private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
