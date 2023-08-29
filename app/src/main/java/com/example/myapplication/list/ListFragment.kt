@@ -88,7 +88,7 @@ class ListFragment : Fragment(), ListUiEvent {
             replace<DetailFragment>(
                 containerViewId = R.id.fragmentContainerView,
                 args = DetailFragment.arguments(listMenu)
-            )
+            ).addToBackStack(null)
         }
     }
 }

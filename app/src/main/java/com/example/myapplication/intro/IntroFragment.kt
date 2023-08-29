@@ -41,7 +41,7 @@ class IntroFragment : Fragment() {
                 parentFragmentManager.commit {
                     replace<ListFragment>(
                         containerViewId = R.id.fragmentContainerView,
-                    )
+                    ).addToBackStack(null)
                 }
             }
         }
