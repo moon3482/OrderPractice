@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="com.example.myapplication.model.IcePortion"/>
+
+        <variable
+            name="orderMenu"
+            type="com.example.myapplication.model.OrderMenu" />
+
+        <variable
+            name="isShowTemp"
+            type="Boolean" />
+
+        <variable
+            name="isShowCaffeine"
+            type="Boolean" />
+
+        <variable
+            name="isShowIce"
+            type="Boolean" />
+
         <variable
             name="isHot"
-            type="java.lang.Boolean" />
+            type="Boolean" />
+
         <variable
             name="isCaffeine"
-            type="java.lang.Boolean" />
+            type="Boolean" />
+
         <variable
             name="icePortion"
             type="com.example.myapplication.model.IcePortion" />
@@ -20,31 +42,37 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/temp_label"
+            android:id="@+id/tempLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="기본"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            bind:isVisible="@{isShowTemp}" />
 
         <androidx.legacy.widget.Space
             android:layout_width="wrap_content"
-            android:layout_height="10dp" />
+            android:layout_height="10dp"
+            bind:isVisible="@{isShowTemp}" />
 
         <RadioGroup
+            android:id="@+id/tempGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/bg_divider_radio_group"
             android:orientation="horizontal"
-            android:showDividers="middle">
+            android:showDividers="middle"
+            bind:isVisible="@{isShowTemp}">
 
             <RadioButton
+                android:id="@+id/tempHot"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
                 android:text="HOT"
+                android:checked="@{isHot == true}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16dp"
@@ -52,12 +80,14 @@
                 tools:checked="true" />
 
             <RadioButton
+                android:id="@+id/tempIce"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
                 android:text="ICE"
+                android:checked="@{isHot == false}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16dp"
@@ -66,46 +96,55 @@
 
         <androidx.legacy.widget.Space
             android:layout_width="wrap_content"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+            bind:isVisible="@{isShowTemp}" />
 
         <TextView
-            android:id="@+id/caffeine_label"
+            android:id="@+id/caffeineLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="디카페인"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            bind:isVisible="@{isShowCaffeine}" />
 
         <androidx.legacy.widget.Space
             android:layout_width="wrap_content"
-            android:layout_height="10dp" />
+            android:layout_height="10dp"
+            bind:isVisible="@{isShowCaffeine}" />
 
         <RadioGroup
+            android:id="@+id/caffeineGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/bg_divider_radio_group"
             android:orientation="horizontal"
-            android:showDividers="middle">
+            android:showDividers="middle"
+            bind:isVisible="@{isShowCaffeine}">
 
             <RadioButton
+                android:id="@+id/caffeine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
                 android:text="카페인"
+                android:checked="@{isCaffeine == true}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <RadioButton
+                android:id="@+id/deCaffeine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
                 android:text="디카페인"
+                android:checked="@{isCaffeine == false}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16dp"
@@ -115,28 +154,34 @@
 
         <androidx.legacy.widget.Space
             android:layout_width="wrap_content"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+            bind:isVisible="@{isShowCaffeine}" />
 
         <TextView
-            android:id="@+id/ice_label"
+            android:id="@+id/iceLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="얼음"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            bind:isVisible="@{isShowIce}" />
 
         <androidx.legacy.widget.Space
             android:layout_width="wrap_content"
-            android:layout_height="10dp" />
+            android:layout_height="10dp"
+            bind:isVisible="@{isShowIce}" />
 
         <RadioGroup
+            android:id="@+id/iceGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/bg_divider_radio_group"
             android:orientation="horizontal"
-            android:showDividers="middle">
+            android:showDividers="middle"
+            bind:isVisible="@{isShowIce}">
 
             <RadioButton
+                android:id="@+id/iceSmall"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -144,17 +189,20 @@
                 android:button="@null"
                 android:text="적게"
                 android:textAlignment="center"
+                android:checked="@{icePortion == IcePortion.SMALL}"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <RadioButton
+                android:id="@+id/iceMedium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
                 android:text="보통"
+                android:checked="@{icePortion == IcePortion.MEDIUM}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16dp"
@@ -162,12 +210,14 @@
                 tools:checked="true" />
 
             <RadioButton
+                android:id="@+id/iceLarge"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
                 android:text="많이"
+                android:checked="@{icePortion == IcePortion.LARGE}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16dp"
