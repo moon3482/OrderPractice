@@ -13,4 +13,5 @@
     <string name="small">적게</string>
     <string name="medium">보통</string>
     <string name="large">많이</string>
+    <string name="ice_portion">얼음</string>
 </resources>
