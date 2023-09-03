@@ -64,11 +64,20 @@ class DetailWidget @JvmOverloads constructor(
 
     fun setOption(orderMenu: OrderMenu) {
         with(binding) {
-            isShowTemp =
-                orderMenu !is OrderMenu.Tea && orderMenu !is OrderMenu.Ade && orderMenu.isHot != null
+            isShowTemp = when (orderMenu) {
+                is OrderMenu.Tea,
+                is OrderMenu.Ade,
+                is OrderMenu.Desert -> false
+
+                else -> true
+            }
             isShowCaffeine = orderMenu.isCaffeine != null
-            isShowIce =
-                orderMenu !is OrderMenu.Desert && orderMenu !is OrderMenu.Tea && (orderMenu.isHot == null || orderMenu.isHot == false)
+            isShowIce = when {
+                orderMenu.isHot == true -> false
+                orderMenu is OrderMenu.Tea -> false
+                orderMenu is OrderMenu.Desert-> false
+                else -> true
+            }
             isHot = orderMenu.isHot == true
             isCaffeine = orderMenu.isCaffeine
             icePortion = orderMenu.icePortion

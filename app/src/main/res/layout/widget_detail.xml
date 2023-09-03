@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="com.example.myapplication.model.IcePortion"/>
+        <import type="com.example.myapplication.model.IcePortion" />
 
         <variable
             name="orderMenu"
@@ -71,8 +71,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="@string/hot"
                 android:checked="@{isHot}"
+                android:text="@string/hot"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16sp"
@@ -86,8 +86,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
+                android:checked="@{!isHot}"
                 android:text="@string/ice"
-                android:checked="@{isHot}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16sp"
@@ -129,8 +129,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="@string/caffeine"
                 android:checked="@{isCaffeine == true}"
+                android:text="@string/caffeine"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16sp"
@@ -143,8 +143,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="@string/deCaffeine"
                 android:checked="@{isCaffeine == false}"
+                android:text="@string/deCaffeine"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16sp"
@@ -161,8 +161,8 @@
             android:id="@+id/iceLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="얼음"
-            android:textSize="20dp"
+            android:text="@string/ice_portion"
+            android:textSize="20sp"
             android:textStyle="bold"
             bind:isVisible="@{isShowIce}" />
 
@@ -187,9 +187,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
+                android:checked="@{icePortion == IcePortion.SMALL}"
                 android:text="@string/small"
                 android:textAlignment="center"
-                android:checked="@{icePortion == IcePortion.SMALL}"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -201,8 +201,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="@string/medium"
                 android:checked="@{icePortion == IcePortion.MEDIUM}"
+                android:text="@string/medium"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16sp"
@@ -216,8 +216,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="@string/large"
                 android:checked="@{icePortion == IcePortion.LARGE}"
+                android:text="@string/large"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
                 android:textSize="16sp"

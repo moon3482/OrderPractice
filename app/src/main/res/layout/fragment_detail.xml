@@ -30,7 +30,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/round_arrow_back_24" />
+            app:navigationIcon="@drawable/round_arrow_back_24"
+            bind:onClickBack="@{uiEvent::onClickBack}" />
 
         <LinearLayout
             android:id="@+id/selectedMenu"
@@ -58,7 +59,7 @@
                 android:id="@+id/selectedMenuPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 bind:price="@{vm.selectedListMenu.price}"
                 tools:text="1000원" />
@@ -87,11 +88,11 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"
-            bind:uiEvent="@{uiEvent}"
-            bind:orderMenu="@{vm.selectedListMenu}"
             app:layout_constraintBottom_toBottomOf="@id/bottomGuideLine"
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
-            app:layout_constraintStart_toStartOf="@id/startGuideLine" />
+            app:layout_constraintStart_toStartOf="@id/startGuideLine"
+            bind:onClickOrder="@{uiEvent}"
+            bind:orderMenu="@{vm.selectedListMenu}" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/startGuideLine"

@@ -12,7 +12,6 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDetailBinding
 import com.example.myapplication.model.IcePortion
 import com.example.myapplication.model.ListMenu
-import com.example.myapplication.model.MenuType
 import com.example.myapplication.model.OrderMenu
 import com.example.myapplication.order.OrderFragment
 
@@ -27,7 +26,7 @@ class DetailFragment : Fragment(), DetailUiEvent {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentDetailBinding.inflate(layoutInflater)
         return binding.root
@@ -39,13 +38,7 @@ class DetailFragment : Fragment(), DetailUiEvent {
             lifecycleOwner = this@DetailFragment
             vm = viewModel
             uiEvent = this@DetailFragment
-            detailToolbar.setNavigationOnClickListener {
-                requireActivity().onBackPressed()
-            }
         }
-        val listMenu = arguments?.getListMenu()
-        if (listMenu != null)
-            viewModel.setSelectedListMenu(listMenu)
     }
 
     override fun onDestroyView() {
@@ -65,7 +58,7 @@ class DetailFragment : Fragment(), DetailUiEvent {
         viewModel.setIcePortion(icePortion)
     }
 
-    override fun moveToOrder(orderMenu: OrderMenu) {
+    override fun onClickOrder(orderMenu: OrderMenu) {
         parentFragmentManager.commit {
             replace<OrderFragment>(
                 containerViewId = R.id.fragmentContainerView,
@@ -74,23 +67,15 @@ class DetailFragment : Fragment(), DetailUiEvent {
         }
     }
 
+    override fun onClickBack() {
+        requireActivity().onBackPressed()
+    }
+
     companion object {
         fun arguments(listMenu: ListMenu): Bundle = Bundle().apply {
             putString("menuName", listMenu.name)
             putInt("menuPrice", listMenu.price)
             putString("menuType", listMenu.menuType.name)
-        }
-
-        private fun Bundle.getListMenu(): ListMenu? {
-            val name = getString("menuName")
-            val price = getInt("menuPrice")
-            val menuType = getString("menuType")?.let { menuTypeName ->
-                MenuType.entries.find { it.name == menuTypeName }
-            }
-            return if (name != null && menuType != null)
-                ListMenu(name, price, menuType)
-            else
-                null
         }
     }
 }

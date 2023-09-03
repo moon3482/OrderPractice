@@ -2,18 +2,42 @@ package com.example.myapplication.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.model.IcePortion
 import com.example.myapplication.model.ListMenu
+import com.example.myapplication.model.MenuType
 import com.example.myapplication.model.OrderMenu
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DetailViewModel(): ViewModel() {
+@HiltViewModel
+class DetailViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
+) : ViewModel() {
     private val _selectedListMenu: MutableLiveData<OrderMenu> = MutableLiveData()
     val selectedListMenu: LiveData<OrderMenu>
         get() = _selectedListMenu
 
-    fun setSelectedListMenu(listMenu: ListMenu) {
-        _selectedListMenu.value = OrderMenu(listMenu)
+    init {
+        setSelectedListMenu()
+    }
+
+    private fun setSelectedListMenu() {
+        val name: String? = savedStateHandle["menuName"]
+        val price = savedStateHandle["menuPrice"] ?: 0
+        val menuTypeString: String? = savedStateHandle["menuType"]
+        val menuType = when (menuTypeString) {
+            MenuType.COFFEE.name -> MenuType.COFFEE
+            MenuType.ADE.name -> MenuType.ADE
+            MenuType.TEA.name -> MenuType.TEA
+            MenuType.DESERT.name -> MenuType.DESERT
+            else -> null
+        }
+        if (name != null && menuType != null) {
+            val listMenu = ListMenu(name, price, menuType)
+            _selectedListMenu.value = OrderMenu(listMenu)
+        }
     }
 
     fun setTemp(isHot: Boolean) {
