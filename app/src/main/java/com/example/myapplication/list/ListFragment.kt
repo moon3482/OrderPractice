@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentListBinding
 import com.example.myapplication.detail.DetailFragment
-import com.example.myapplication.list.adapter.ListAdapter
+import com.example.myapplication.list.adapter.MenuGroupAdapter
 import com.example.myapplication.model.ListMenu
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,14 +42,8 @@ class ListFragment : Fragment(), ListUiEvent {
         with(binding) {
             lifecycleOwner = this@ListFragment
             vm = viewModel
-            listRecyclerView.apply {
-                adapter = ListAdapter().apply {
-                    setOnClickMenu(this@ListFragment::onClickMenu)
-                }
-            }
-            listToolbar.setNavigationOnClickListener {
-                requireActivity().onBackPressed()
-            }
+            uiEvent = this@ListFragment
+            menuGroupListRecyclerView.adapter = MenuGroupAdapter()
         }
     }
 
@@ -65,5 +59,9 @@ class ListFragment : Fragment(), ListUiEvent {
                 args = DetailFragment.arguments(listMenu)
             ).addToBackStack(null)
         }
+    }
+
+    override fun onClickBack() {
+        requireActivity().onBackPressed()
     }
 }

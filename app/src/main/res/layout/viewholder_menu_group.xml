@@ -7,9 +7,8 @@
     <data>
 
         <variable
-            name="vm"
-            type="com.example.myapplication.list.ListViewModel" />
-
+            name="menuGroup"
+            type="com.example.myapplication.model.MenuGroup" />
         <variable
             name="uiEvent"
             type="com.example.myapplication.list.ListUiEvent" />
@@ -17,35 +16,38 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".list.ListFragment">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/listToolbar"
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintBottom_toTopOf="@id/menuGroupListRecyclerView"
+            android:paddingVertical="20dp"
+            android:paddingStart="20dp"
+            android:text="@{menuGroup.groupName}"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/menuListRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/round_arrow_back_24"
-            bind:onClickBack="@{uiEvent::onClickBack}" />
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="카테고리" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/menuGroupListRecyclerView"
+            android:id="@+id/menuListRecyclerView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/listToolbar"
-            bind:groupList="@{vm.menuGroupList}"
-            bind:onClickChildItem="@{uiEvent}"
-            tools:listitem="@layout/viewholder_menu_group" />
+            app:layout_constraintTop_toBottomOf="@id/category"
+            bind:menuList="@{menuGroup.menuList}"
+            bind:onClickItem="@{uiEvent}"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

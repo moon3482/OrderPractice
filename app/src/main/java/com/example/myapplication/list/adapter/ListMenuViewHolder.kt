@@ -5,17 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ViewholderListMenuBinding
 import com.example.myapplication.model.ListMenu
-import com.example.myapplication.util.toKRWString
 
 class ListMenuViewHolder(
     private val binding: ViewholderListMenuBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(listMenu: ListMenu?) {
-        with(binding) {
-            menuName = listMenu?.name
-            menuPrice = listMenu?.price?.toKRWString()
-        }
+        binding.listMenu = listMenu
     }
 
     companion object {
