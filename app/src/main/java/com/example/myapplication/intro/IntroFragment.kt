@@ -10,10 +10,9 @@ import androidx.fragment.app.replace
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentIntroBinding
 import com.example.myapplication.list.ListFragment
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class IntroFragment : Fragment() {
+
+class IntroFragment : Fragment(), IntroUiEvent {
     private var _binding: FragmentIntroBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -37,18 +36,20 @@ class IntroFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             lifecycleOwner = this@IntroFragment
-            toListPage.setOnClickListener {
-                parentFragmentManager.commit {
-                    replace<ListFragment>(
-                        containerViewId = R.id.fragmentContainerView,
-                    ).addToBackStack(null)
-                }
-            }
+            uiEvent = this@IntroFragment
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClickNext() {
+        parentFragmentManager.commit {
+            replace<ListFragment>(
+                containerViewId = R.id.fragmentContainerView,
+            ).addToBackStack(null)
+        }
     }
 }
