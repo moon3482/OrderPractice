@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="introScript">반가워요\n주문을 시작할게요</string>
+    <string name="next">다음</string>
+    <string name="order">주문</string>
+    <string name="close">닫기</string>
+    <string name="defaultTemp">기본</string>
+    <string name="hot">HOT</string>
+    <string name="ice">ICE</string>
+    <string name="isDeCaffeine">디카페인</string>
+    <string name="caffeine">카페인</string>
+    <string name="deCaffeine">디카페인</string>
+    <string name="small">적게</string>
+    <string name="medium">보통</string>
+    <string name="large">많이</string>
 </resources>

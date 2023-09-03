@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_button_radius_10"
             android:paddingVertical="10dp"
-            android:text="주문"
+            android:text="@string/order"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold"

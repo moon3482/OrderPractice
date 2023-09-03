@@ -45,8 +45,8 @@
             android:id="@+id/tempLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기본"
-            android:textSize="20dp"
+            android:text="@string/defaultTemp"
+            android:textSize="20sp"
             android:textStyle="bold"
             bind:isVisible="@{isShowTemp}" />
 
@@ -71,11 +71,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="HOT"
-                android:checked="@{isHot == true}"
+                android:text="@string/hot"
+                android:checked="@{isHot}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 tools:checked="true" />
 
@@ -86,11 +86,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="ICE"
-                android:checked="@{isHot == false}"
+                android:text="@string/ice"
+                android:checked="@{isHot}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </RadioGroup>
 
@@ -103,8 +103,8 @@
             android:id="@+id/caffeineLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="디카페인"
-            android:textSize="20dp"
+            android:text="@string/isDeCaffeine"
+            android:textSize="20sp"
             android:textStyle="bold"
             bind:isVisible="@{isShowCaffeine}" />
 
@@ -129,11 +129,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="카페인"
+                android:text="@string/caffeine"
                 android:checked="@{isCaffeine == true}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <RadioButton
@@ -143,11 +143,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="디카페인"
+                android:text="@string/deCaffeine"
                 android:checked="@{isCaffeine == false}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 tools:checked="true" />
         </RadioGroup>
@@ -187,11 +187,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="적게"
+                android:text="@string/small"
                 android:textAlignment="center"
                 android:checked="@{icePortion == IcePortion.SMALL}"
                 android:textColor="@drawable/text_selector_detail_option"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <RadioButton
@@ -201,11 +201,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="보통"
+                android:text="@string/medium"
                 android:checked="@{icePortion == IcePortion.MEDIUM}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 tools:checked="true" />
 
@@ -216,11 +216,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:text="많이"
+                android:text="@string/large"
                 android:checked="@{icePortion == IcePortion.LARGE}"
                 android:textAlignment="center"
                 android:textColor="@drawable/text_selector_detail_option"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </RadioGroup>
 
