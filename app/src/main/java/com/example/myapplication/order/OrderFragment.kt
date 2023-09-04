@@ -30,7 +30,7 @@ class OrderFragment : Fragment(), OrderUiEvent {
         super.onAttach(context)
         backPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-               navigateToIntro()
+                navigateToIntro()
             }
         }
         requireActivity()
@@ -39,15 +39,19 @@ class OrderFragment : Fragment(), OrderUiEvent {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentOrderBinding.inflate(layoutInflater)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             lifecycleOwner = this@OrderFragment

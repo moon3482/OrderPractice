@@ -10,14 +10,12 @@ class ListMenuViewHolder(
     private val binding: ViewholderListMenuBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(listMenu: ListMenu?) {
+    fun bind(listMenu: ListMenu) {
         binding.listMenu = listMenu
     }
 
     companion object {
-        operator fun invoke(
-            parent: ViewGroup,
-        ) = ListMenuViewHolder(
+        operator fun invoke(parent: ViewGroup): ListMenuViewHolder = ListMenuViewHolder(
             ViewholderListMenuBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,

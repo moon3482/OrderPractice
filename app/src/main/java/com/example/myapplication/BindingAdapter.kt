@@ -32,7 +32,7 @@ fun View.isVisible(isVisible: Boolean) {
 @BindingAdapter("bind:groupList")
 fun RecyclerView.setGroupList(groupList: List<MenuGroup>?) {
     val list = groupList ?: emptyList()
-    addItemDecoration(MenuGroupDecoration(Color.parseColor("#EDF1F4"),50F))
+    addItemDecoration(MenuGroupDecoration(Color.parseColor("#EDF1F4"), 50F))
     (adapter as? MenuGroupAdapter)?.setGroupList(list)
 }
 

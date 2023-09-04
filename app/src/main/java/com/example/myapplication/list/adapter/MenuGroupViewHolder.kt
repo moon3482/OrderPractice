@@ -8,7 +8,7 @@ import com.example.myapplication.list.ListUiEvent
 import com.example.myapplication.model.MenuGroup
 
 class MenuGroupViewHolder(
-    private val binding: ViewholderMenuGroupBinding
+    private val binding: ViewholderMenuGroupBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(menuGroup: MenuGroup, listUiEvent: ListUiEvent?) {

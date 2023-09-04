@@ -6,7 +6,7 @@ import com.example.myapplication.list.ListUiEvent
 import com.example.myapplication.model.MenuGroup
 
 class MenuGroupAdapter(
-    private val menuGroupList: MutableList<MenuGroup> = mutableListOf()
+    private val menuGroupList: MutableList<MenuGroup> = mutableListOf(),
 ) : RecyclerView.Adapter<MenuGroupViewHolder>() {
     private var listUiEvent: ListUiEvent? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuGroupViewHolder =

@@ -26,7 +26,7 @@ class ListFragment : Fragment(), ListUiEvent {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentListBinding.inflate(layoutInflater)

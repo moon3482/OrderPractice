@@ -11,15 +11,16 @@ class ListMenuAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListMenuViewHolder =
         ListMenuViewHolder(parent)
 
-    override fun getItemCount(): Int = menuList.size
-
     override fun onBindViewHolder(holder: ListMenuViewHolder, position: Int) {
         val listMenu = menuList[position]
         holder.bind(listMenu)
         holder.itemView.setOnClickListener {
             onClickMenu?.invoke(listMenu)
         }
+
     }
+
+    override fun getItemCount(): Int = menuList.size
 
     fun setMenuList(menuList: List<ListMenu>) {
         this.menuList.addAll(menuList)

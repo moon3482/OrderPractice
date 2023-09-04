@@ -9,6 +9,7 @@
         <variable
             name="menuGroup"
             type="com.example.myapplication.model.MenuGroup" />
+
         <variable
             name="uiEvent"
             type="com.example.myapplication.list.ListUiEvent" />
@@ -46,7 +47,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/category"
             bind:menuList="@{menuGroup.menuList}"
-            bind:onClickItem="@{uiEvent}"/>
+            bind:onClickItem="@{uiEvent}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
