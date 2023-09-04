@@ -19,7 +19,7 @@ sealed class OrderMenu {
     data class Ade(
         override val name: String,
         override val price: Int,
-        override val icePortion: IcePortion?,
+        override val icePortion: IcePortion,
     ) : OrderMenu() {
         override val isHot: Boolean? = null
         override val isCaffeine: Boolean? = null
@@ -43,36 +43,4 @@ sealed class OrderMenu {
         override val isCaffeine: Boolean? = null
         override val icePortion: IcePortion? = null
     }
-
-    companion object {
-        operator fun invoke(listMenu: ListMenu): OrderMenu {
-            return when (listMenu.menuType) {
-                MenuType.COFFEE -> Coffee(
-                    name = listMenu.name,
-                    price = listMenu.price,
-                    isHot = true,
-                    isCaffeine = true,
-                    icePortion = null,
-                )
-
-                MenuType.ADE -> Ade(
-                    name = listMenu.name,
-                    price = listMenu.price,
-                    icePortion = IcePortion.MEDIUM,
-                )
-
-                MenuType.TEA -> Tea(
-                    name = listMenu.name,
-                    price = listMenu.price,
-                    isCaffeine = true,
-                )
-
-                MenuType.DESERT -> Desert(
-                    name = listMenu.name,
-                    price = listMenu.price,
-                )
-            }
-        }
-    }
-
 }
