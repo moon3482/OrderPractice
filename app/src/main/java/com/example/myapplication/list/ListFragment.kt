@@ -13,9 +13,8 @@ import com.example.myapplication.databinding.FragmentListBinding
 import com.example.myapplication.detail.DetailFragment
 import com.example.myapplication.list.adapter.MenuGroupAdapter
 import com.example.myapplication.model.ListMenu
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class ListFragment : Fragment(), ListUiEvent {
     private var _binding: FragmentListBinding? = null
     private val binding

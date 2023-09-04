@@ -16,9 +16,7 @@ import com.example.myapplication.databinding.FragmentOrderBinding
 import com.example.myapplication.intro.IntroFragment
 import com.example.myapplication.model.OrderMenu
 import com.example.myapplication.util.toOptionString
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class OrderFragment : Fragment(), OrderUiEvent {
     private var _binding: FragmentOrderBinding? = null
     private val binding
