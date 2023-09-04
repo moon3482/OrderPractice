@@ -24,7 +24,7 @@
             android:id="@+id/listToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@android:color/transparent"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintBottom_toTopOf="@id/menuGroupListRecyclerView"
