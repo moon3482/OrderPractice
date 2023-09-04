@@ -4,14 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class OrderViewModel @Inject constructor(
+class OrderViewModel(
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-
     private val _orderedMenuName: MutableLiveData<String> = MutableLiveData()
     val orderedMenuName: LiveData<String>
         get() = _orderedMenuName
@@ -27,12 +23,13 @@ class OrderViewModel @Inject constructor(
     }
 
     private fun setOrderedMenu() {
-        val name: String = savedStateHandle["menuName"] ?: ""
-        val price: Int = savedStateHandle["menuPrice"] ?: 0
-        val option: String = savedStateHandle["menuOption"] ?: ""
-
-        _orderedMenuName.value = name
-        _orderedMenuPrice.value = price
-        _orderedMenuOption.value = option
+        val name = savedStateHandle.get<String>("menuName")
+        val price = savedStateHandle.get<Int>("menuPrice")
+        val option = savedStateHandle.get<String>("menuOption")
+        if (name == null || price == null || option == null) 
+            return
+        _orderedMenuName.value = name!!
+        _orderedMenuPrice.value = price!!
+        _orderedMenuOption.value = option!!
     }
 }
