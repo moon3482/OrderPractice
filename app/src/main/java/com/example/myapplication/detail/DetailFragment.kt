@@ -24,15 +24,19 @@ class DetailFragment : Fragment(), DetailUiEvent {
     private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentDetailBinding.inflate(layoutInflater)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             lifecycleOwner = this@DetailFragment
@@ -54,7 +58,7 @@ class DetailFragment : Fragment(), DetailUiEvent {
         viewModel.setCaffeine(isCaffeine)
     }
 
-    override fun onChangeIcePortion(icePortion: IcePortion?) {
+    override fun onChangeIcePortion(icePortion: IcePortion) {
         viewModel.setIcePortion(icePortion)
     }
 
@@ -75,7 +79,7 @@ class DetailFragment : Fragment(), DetailUiEvent {
         fun arguments(listMenu: ListMenu): Bundle = Bundle().apply {
             putString("menuName", listMenu.name)
             putInt("menuPrice", listMenu.price)
-            putString("menuType", listMenu.menuType.name)
+            putSerializable("menuType", listMenu.menuType)
         }
     }
 }

@@ -36,55 +36,61 @@ class DetailWidget @JvmOverloads constructor(
 
     init {
         with(binding) {
-            tempGroup.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    tempHot.id -> {
-                        detailUiEvent?.onChangeTemp(true)
-                        detailUiEvent?.onChangeIcePortion(null)
+            tempHot.setOnClickListener {
+                detailUiEvent?.onChangeTemp(true)
+            }
+            tempIce.setOnClickListener {
+                detailUiEvent?.onChangeTemp(false)
+            }
+            caffeine.setOnClickListener {
+                detailUiEvent?.onChangeCaffeine(true)
+            }
+            deCaffeine.setOnClickListener {
+                detailUiEvent?.onChangeCaffeine(false)
+            }
+            iceSmall.setOnClickListener {
+                detailUiEvent?.onChangeIcePortion(IcePortion.SMALL)
+            }
+            iceMedium.setOnClickListener {
+                detailUiEvent?.onChangeIcePortion(IcePortion.MEDIUM)
+            }
+            iceLarge.setOnClickListener {
+                detailUiEvent?.onChangeIcePortion(IcePortion.LARGE)
+            }
+        }
+    }
+
+    fun setOption(orderMenu: OrderMenu?) {
+        with(binding) {
+            orderMenu?.let { orderMenu ->
+                this.orderMenu = orderMenu
+                isShowTemp = when (orderMenu) {
+                    is OrderMenu.Coffee -> true
+                    is OrderMenu.Ade,
+                    is OrderMenu.Tea,
+                    is OrderMenu.Desert -> false
+                }
+                isShowCaffeine = when (orderMenu) {
+                    is OrderMenu.Coffee,
+                    is OrderMenu.Tea -> true
+
+                    is OrderMenu.Ade,
+                    is OrderMenu.Desert -> false
+                }
+                isShowIce = when (orderMenu) {
+                    is OrderMenu.Coffee -> {
+                        !orderMenu.isHot
                     }
 
-                    tempIce.id -> detailUiEvent?.onChangeTemp(false)
-                }
-            }
-            caffeineGroup.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    caffeine.id -> detailUiEvent?.onChangeCaffeine(true)
-                    deCaffeine.id -> detailUiEvent?.onChangeCaffeine(false)
-                }
-            }
-            iceGroup.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    iceSmall.id -> detailUiEvent?.onChangeIcePortion(IcePortion.SMALL)
-                    iceMedium.id -> detailUiEvent?.onChangeIcePortion(IcePortion.MEDIUM)
-                    iceLarge.id -> detailUiEvent?.onChangeIcePortion(IcePortion.LARGE)
+                    is OrderMenu.Ade -> true
+                    is OrderMenu.Tea,
+                    is OrderMenu.Desert -> false
                 }
             }
         }
     }
 
-    fun setOption(orderMenu: OrderMenu) {
-        with(binding) {
-            isShowTemp = when (orderMenu) {
-                is OrderMenu.Tea,
-                is OrderMenu.Ade,
-                is OrderMenu.Desert -> false
-
-                else -> true
-            }
-            isShowCaffeine = orderMenu.isCaffeine != null
-            isShowIce = when {
-                orderMenu.isHot == true -> false
-                orderMenu is OrderMenu.Tea -> false
-                orderMenu is OrderMenu.Desert-> false
-                else -> true
-            }
-            isHot = orderMenu.isHot == true
-            isCaffeine = orderMenu.isCaffeine
-            icePortion = orderMenu.icePortion
-        }
-    }
-
-    fun setDetailUiEvent(detailUiEvent: DetailUiEvent) {
+    fun setDetailUiEvent(detailUiEvent: DetailUiEvent?) {
         this.detailUiEvent = detailUiEvent
     }
 }

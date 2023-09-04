@@ -24,7 +24,7 @@
             android:id="@+id/detailToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@android:color/transparent"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
                 android:id="@+id/selectedMenuName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.selectedListMenu.name}"
+                android:text="@{vm.selectedOrderMenu.name}"
                 tools:text="메뉴이름" />
 
             <androidx.legacy.widget.Space
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                bind:price="@{vm.selectedListMenu.price}"
+                bind:price="@{vm.selectedOrderMenu.price}"
                 tools:text="1000원" />
         </LinearLayout>
 
@@ -75,7 +75,7 @@
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
             app:layout_constraintStart_toStartOf="@id/startGuideLine"
             app:layout_constraintTop_toBottomOf="@id/selectedMenu"
-            bind:option="@{vm.selectedListMenu}"
+            bind:option="@{vm.selectedOrderMenu}"
             bind:uiEvent="@{uiEvent}" />
 
         <TextView
@@ -92,7 +92,7 @@
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
             app:layout_constraintStart_toStartOf="@id/startGuideLine"
             bind:onClickOrder="@{uiEvent}"
-            bind:orderMenu="@{vm.selectedListMenu}" />
+            bind:orderMenu="@{vm.selectedOrderMenu}" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/startGuideLine"

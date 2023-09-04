@@ -6,7 +6,7 @@ import com.example.myapplication.model.OrderMenu
 interface DetailUiEvent {
     fun onChangeTemp(isHot: Boolean)
     fun onChangeCaffeine(isCaffeine: Boolean)
-    fun onChangeIcePortion(icePortion: IcePortion?)
+    fun onChangeIcePortion(icePortion: IcePortion)
     fun onClickOrder(orderMenu: OrderMenu)
     fun onClickBack()
 }

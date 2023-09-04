@@ -22,18 +22,6 @@
         <variable
             name="isShowIce"
             type="Boolean" />
-
-        <variable
-            name="isHot"
-            type="Boolean" />
-
-        <variable
-            name="isCaffeine"
-            type="Boolean" />
-
-        <variable
-            name="icePortion"
-            type="com.example.myapplication.model.IcePortion" />
     </data>
 
     <LinearLayout
@@ -71,10 +59,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{isHot}"
+                android:checked="@{orderMenu.isHot}"
                 android:text="@string/hot"
                 android:textAlignment="center"
-                android:textColor="@drawable/text_selector_detail_option"
+                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:checked="true" />
@@ -86,10 +74,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{!isHot}"
+                android:checked="@{!orderMenu.isHot}"
                 android:text="@string/ice"
                 android:textAlignment="center"
-                android:textColor="@drawable/text_selector_detail_option"
+                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </RadioGroup>
@@ -129,10 +117,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{isCaffeine == true}"
+                android:checked="@{orderMenu.isCaffeine}"
                 android:text="@string/caffeine"
                 android:textAlignment="center"
-                android:textColor="@drawable/text_selector_detail_option"
+                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -143,10 +131,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{isCaffeine == false}"
+                android:checked="@{!orderMenu.isCaffeine}"
                 android:text="@string/deCaffeine"
                 android:textAlignment="center"
-                android:textColor="@drawable/text_selector_detail_option"
+                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:checked="true" />
@@ -187,10 +175,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{icePortion == IcePortion.SMALL}"
+                android:checked="@{IcePortion.SMALL == orderMenu.icePortion}"
                 android:text="@string/small"
                 android:textAlignment="center"
-                android:textColor="@drawable/text_selector_detail_option"
+                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -201,10 +189,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{icePortion == IcePortion.MEDIUM}"
+                android:checked="@{IcePortion.MEDIUM == orderMenu.icePortion}"
                 android:text="@string/medium"
                 android:textAlignment="center"
-                android:textColor="@drawable/text_selector_detail_option"
+                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:checked="true" />
@@ -216,10 +204,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{icePortion == IcePortion.LARGE}"
+                android:checked="@{IcePortion.LARGE == orderMenu.icePortion}"
                 android:text="@string/large"
                 android:textAlignment="center"
-                android:textColor="@drawable/text_selector_detail_option"
+                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </RadioGroup>
