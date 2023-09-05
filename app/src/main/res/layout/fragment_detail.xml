@@ -66,17 +66,194 @@
         </LinearLayout>
 
 
-        <com.example.myapplication.widget.DetailWidget
-            android:id="@+id/detailWidget"
+        <LinearLayout
+            android:id="@+id/options"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="50dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/sendOrder"
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
             app:layout_constraintStart_toStartOf="@id/startGuideLine"
-            app:layout_constraintTop_toBottomOf="@id/selectedMenu"
-            bind:option="@{vm.selectedOrderMenu}"
-            bind:uiEvent="@{uiEvent}" />
+            app:layout_constraintTop_toBottomOf="@id/selectedMenu">
+
+            <TextView
+                android:id="@+id/tempLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/defaultTemp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                bind:isVisible="@{vm.isShowTemp}" />
+
+            <androidx.legacy.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                bind:isVisible="@{vm.isShowTemp}" />
+
+            <RadioGroup
+                android:id="@+id/tempGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/bg_divider_radio_group"
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                bind:isVisible="@{vm.isShowTemp}">
+
+                <RadioButton
+                    android:id="@+id/tempHot"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_selector"
+                    android:button="@null"
+                    android:text="@string/hot"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_radio_selector"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/tempIce"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_selector"
+                    android:button="@null"
+                    android:text="@string/ice"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_radio_selector"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+            <androidx.legacy.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                bind:isVisible="@{vm.isShowTemp}" />
+
+            <TextView
+                android:id="@+id/caffeineLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/isDeCaffeine"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                bind:isVisible="@{vm.isShowCaffeine}" />
+
+            <androidx.legacy.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                bind:isVisible="@{vm.isShowCaffeine}" />
+
+            <RadioGroup
+                android:id="@+id/caffeineGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/bg_divider_radio_group"
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                bind:isVisible="@{vm.isShowCaffeine}">
+
+                <RadioButton
+                    android:id="@+id/caffeine"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_selector"
+                    android:button="@null"
+                    android:text="@string/caffeine"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_radio_selector"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/deCaffeine"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_selector"
+                    android:button="@null"
+                    android:text="@string/deCaffeine"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_radio_selector"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:checked="true" />
+            </RadioGroup>
+
+            <androidx.legacy.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                bind:isVisible="@{vm.isShowCaffeine}" />
+
+            <TextView
+                android:id="@+id/iceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ice_portion"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                bind:isVisible="@{vm.isShowIce}" />
+
+            <androidx.legacy.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                bind:isVisible="@{vm.isShowIce}" />
+
+            <RadioGroup
+                android:id="@+id/iceGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/bg_divider_radio_group"
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                bind:isVisible="@{vm.isShowIce}">
+
+                <RadioButton
+                    android:id="@+id/iceSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_selector"
+                    android:button="@null"
+                    android:text="@string/small"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_radio_selector"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/iceMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_selector"
+                    android:button="@null"
+                    android:text="@string/medium"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_radio_selector"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/iceLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_radio_selector"
+                    android:button="@null"
+                    android:text="@string/large"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_radio_selector"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/sendOrder"
