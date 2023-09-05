@@ -112,8 +112,4 @@ class DetailViewModel(
             }
         }
     }
-
-    fun setEvent(event: Event) {
-        _event.value = event
-    }
 }

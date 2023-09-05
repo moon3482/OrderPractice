@@ -49,9 +49,7 @@ class DetailFragment : Fragment(), DetailUiEvent {
         }
         viewModel.event.observe(viewLifecycleOwner) { event ->
             when (event) {
-                Event.NONE -> Unit
                 Event.ERROR -> {
-                    viewModel.setEvent(Event.NONE)
                     Toast.makeText(requireContext(), "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show()
                     parentFragmentManager.popBackStack(
                         null,
