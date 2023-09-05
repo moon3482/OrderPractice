@@ -2,8 +2,10 @@ package com.example.myapplication
 
 import android.graphics.Color
 import android.view.View
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -84,5 +86,25 @@ fun View.setOnClickClose(orderUiEvent: OrderUiEvent?) {
 fun Toolbar.setOnClickClose(onClickClose: (() -> Unit)?) {
     setNavigationOnClickListener {
         onClickClose?.invoke()
+    }
+}
+
+@BindingAdapter("bind:checked")
+fun RadioButton.setSelected(checked: Boolean?) {
+    checked?.let { checked ->
+        val drawableId = if (checked)
+            R.drawable.bg_radio_button_selected
+        else
+            R.drawable.bg_radio_button_unselected
+        val backgroundDrawable = ContextCompat.getDrawable(context, drawableId)
+        val colorId = if (checked)
+            R.color.radio_selected
+        else
+            R.color.radio_unselected
+        val textColor = ContextCompat.getColor(context, colorId)
+
+        background = backgroundDrawable
+        setTextColor(textColor)
+        isChecked = checked
     }
 }

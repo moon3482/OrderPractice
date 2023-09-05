@@ -61,31 +61,37 @@ class DetailWidget @JvmOverloads constructor(
     }
 
     fun setOption(orderMenu: OrderMenu?) {
-        with(binding) {
-            orderMenu?.let { orderMenu ->
+        orderMenu?.let { orderMenu ->
+            with(binding) {
                 this.orderMenu = orderMenu
-                isShowTemp = when (orderMenu) {
-                    is OrderMenu.Coffee -> true
-                    is OrderMenu.Ade,
-                    is OrderMenu.Tea,
-                    is OrderMenu.Desert -> false
-                }
-                isShowCaffeine = when (orderMenu) {
-                    is OrderMenu.Coffee,
-                    is OrderMenu.Tea -> true
-
-                    is OrderMenu.Ade,
-                    is OrderMenu.Desert -> false
-                }
-                isShowIce = when (orderMenu) {
+                when (orderMenu) {
                     is OrderMenu.Coffee -> {
-                        !orderMenu.isHot
+                        isShowTemp = true
+                        isShowCaffeine = true
+                        isShowIce = !orderMenu.isHot
                     }
 
-                    is OrderMenu.Ade -> true
-                    is OrderMenu.Tea,
-                    is OrderMenu.Desert -> false
+                    is OrderMenu.Ade -> {
+                        isShowTemp = false
+                        isShowCaffeine = false
+                        isShowIce = true
+                    }
+
+                    is OrderMenu.Tea -> {
+                        isShowTemp = false
+                        isShowCaffeine = true
+                        isShowIce = false
+                    }
+
+                    is OrderMenu.Desert -> {
+                        isShowTemp = false
+                        isShowCaffeine = false
+                        isShowIce = false
+                    }
                 }
+                isSmallPortion = IcePortion.SMALL == orderMenu.icePortion
+                isMediumPortion = IcePortion.MEDIUM == orderMenu.icePortion
+                isLargePortion = IcePortion.LARGE == orderMenu.icePortion
             }
         }
     }

@@ -22,6 +22,18 @@
         <variable
             name="isShowIce"
             type="Boolean" />
+
+        <variable
+            name="isSmallPortion"
+            type="Boolean" />
+
+        <variable
+            name="isMediumPortion"
+            type="Boolean" />
+
+        <variable
+            name="isLargePortion"
+            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -57,14 +69,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{orderMenu.isHot}"
                 android:text="@string/hot"
                 android:textAlignment="center"
-                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                bind:checked="@{orderMenu.isHot}"
                 tools:checked="true" />
 
             <RadioButton
@@ -72,14 +82,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{!orderMenu.isHot}"
                 android:text="@string/ice"
                 android:textAlignment="center"
-                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                bind:checked="@{!orderMenu.isHot}" />
         </RadioGroup>
 
         <androidx.legacy.widget.Space
@@ -115,28 +123,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{orderMenu.isCaffeine}"
                 android:text="@string/caffeine"
                 android:textAlignment="center"
-                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                bind:checked="@{orderMenu.isCaffeine}" />
 
             <RadioButton
                 android:id="@+id/deCaffeine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{!orderMenu.isCaffeine}"
                 android:text="@string/deCaffeine"
                 android:textAlignment="center"
-                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                bind:checked="@{!orderMenu.isCaffeine}"
                 tools:checked="true" />
         </RadioGroup>
 
@@ -173,28 +177,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{IcePortion.SMALL == orderMenu.icePortion}"
                 android:text="@string/small"
                 android:textAlignment="center"
-                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                bind:checked="@{isSmallPortion}" />
 
             <RadioButton
                 android:id="@+id/iceMedium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{IcePortion.MEDIUM == orderMenu.icePortion}"
                 android:text="@string/medium"
                 android:textAlignment="center"
-                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                bind:checked="@{isMediumPortion}"
                 tools:checked="true" />
 
             <RadioButton
@@ -202,14 +202,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_selector_detail_option"
                 android:button="@null"
-                android:checked="@{IcePortion.LARGE == orderMenu.icePortion}"
                 android:text="@string/large"
                 android:textAlignment="center"
-                android:textColor="@color/text_selector_detail_option"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                bind:checked="@{isLargePortion}" />
         </RadioGroup>
 
     </LinearLayout>
