@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.example.myapplication.model.Event
 import com.example.myapplication.model.IcePortion
 import com.example.myapplication.model.MenuType
 import com.example.myapplication.model.OrderMenu
@@ -14,6 +15,9 @@ class DetailViewModel(
     private val _selectedOrderMenu: MutableLiveData<OrderMenu> = MutableLiveData()
     val selectedOrderMenu: LiveData<OrderMenu>
         get() = _selectedOrderMenu
+    private val _event: MutableLiveData<Event> = MutableLiveData()
+    val event: LiveData<Event>
+        get() = _event
 
     init {
         setSelectedOrderMenu()
@@ -24,6 +28,7 @@ class DetailViewModel(
         val price = savedStateHandle.get<Int>("menuPrice")
         val menuType = savedStateHandle.get<MenuType>("menuType")
         if (menuType == null || name == null || price == null) {
+            _event.value = Event.ERROR
             return
         }
         val orderMenu = when (menuType) {
@@ -106,5 +111,9 @@ class DetailViewModel(
                 is OrderMenu.Tea -> Unit
             }
         }
+    }
+
+    fun setEvent(event: Event) {
+        _event.value = event
     }
 }
