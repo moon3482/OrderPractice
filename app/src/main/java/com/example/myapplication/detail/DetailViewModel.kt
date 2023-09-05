@@ -4,26 +4,65 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.example.myapplication.model.Event
 import com.example.myapplication.model.IcePortion
+import com.example.myapplication.model.ListMenu
 import com.example.myapplication.model.MenuType
-import com.example.myapplication.model.OrderMenu
 
 class DetailViewModel(
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-    private val _selectedOrderMenu: MutableLiveData<OrderMenu> = MutableLiveData()
-    val selectedOrderMenu: LiveData<OrderMenu>
-        get() = _selectedOrderMenu
+    private val _selectedListMenu: MutableLiveData<ListMenu> = MutableLiveData()
+    val selectedListMenu: LiveData<ListMenu>
+        get() = _selectedListMenu
+    val isShowTemp
+        get() = _selectedListMenu.map { listMenu ->
+            when (listMenu.menuType) {
+                MenuType.COFFEE -> true
+                MenuType.ADE,
+                MenuType.TEA,
+                MenuType.DESERT -> false
+            }
+        }
+    val isShowCaffeine
+        get() = _selectedListMenu.map { listMenu ->
+            when (listMenu.menuType) {
+                MenuType.COFFEE,
+                MenuType.TEA -> true
+
+                MenuType.ADE,
+                MenuType.DESERT -> false
+            }
+        }
+    val isShowIce
+        get() = _selectedListMenu.map { listMenu ->
+            when (listMenu.menuType) {
+                MenuType.COFFEE -> true
+
+                MenuType.ADE -> true
+                MenuType.TEA,
+                MenuType.DESERT -> false
+            }
+        }
+    private val _isHot: MutableLiveData<Boolean> = MutableLiveData()
+    val isHot: LiveData<Boolean>
+        get() = _isHot
+    private val _isCaffeine: MutableLiveData<Boolean> = MutableLiveData()
+    val isCaffeine: LiveData<Boolean>
+        get() = _isCaffeine
+    private val _icePortion: MutableLiveData<IcePortion?> = MutableLiveData()
+    val icePortion: LiveData<IcePortion?>
+        get() = _icePortion
     private val _event: MutableLiveData<Event> = MutableLiveData()
     val event: LiveData<Event>
         get() = _event
 
     init {
-        setSelectedOrderMenu()
+        setSelectedListMenu()
     }
 
-    private fun setSelectedOrderMenu() {
+    private fun setSelectedListMenu() {
         val name = savedStateHandle.get<String>("menuName")
         val price = savedStateHandle.get<Int>("menuPrice")
         val menuType = savedStateHandle.get<MenuType>("menuType")
@@ -31,85 +70,19 @@ class DetailViewModel(
             _event.value = Event.ERROR
             return
         }
-        val orderMenu = when (menuType) {
-            MenuType.COFFEE -> OrderMenu.Coffee(
-                name = name,
-                price = price,
-                isHot = true,
-                isCaffeine = true,
-                icePortion = null,
-            )
-
-            MenuType.ADE -> OrderMenu.Ade(
-                name = name,
-                price = price,
-                icePortion = IcePortion.MEDIUM,
-            )
-
-            MenuType.TEA -> OrderMenu.Tea(
-                name = name,
-                price = price,
-                isCaffeine = true,
-            )
-
-            MenuType.DESERT -> OrderMenu.Desert(
-                name = name,
-                price = price,
-            )
-        }
-        _selectedOrderMenu.value = orderMenu
+        val listMenu = ListMenu(name, price, menuType)
+        _selectedListMenu.value = listMenu
     }
 
     fun setTemp(isHot: Boolean) {
-        _selectedOrderMenu.value?.let { orderMenu ->
-            when (orderMenu) {
-                is OrderMenu.Coffee -> {
-                    _selectedOrderMenu.value = if (isHot)
-                        orderMenu.copy(isHot = true, icePortion = null)
-                    else
-                        orderMenu.copy(isHot = false, icePortion = IcePortion.MEDIUM)
-                }
-
-                is OrderMenu.Ade,
-                is OrderMenu.Tea,
-                is OrderMenu.Desert -> Unit
-            }
-        }
+        _isHot.value = isHot
     }
-
 
     fun setCaffeine(isCaffeine: Boolean) {
-        _selectedOrderMenu.value?.let { orderMenu ->
-            when (orderMenu) {
-                is OrderMenu.Coffee -> {
-                    _selectedOrderMenu.value = orderMenu.copy(isCaffeine = isCaffeine)
-                }
-
-                is OrderMenu.Tea -> {
-                    _selectedOrderMenu.value = orderMenu.copy(isCaffeine = isCaffeine)
-                }
-
-                is OrderMenu.Ade,
-                is OrderMenu.Desert,
-                -> Unit
-            }
-        }
+        _isCaffeine.value = isCaffeine
     }
 
-    fun setIcePortion(icePortion: IcePortion) {
-        _selectedOrderMenu.value?.let { orderMenu ->
-            when (orderMenu) {
-                is OrderMenu.Coffee -> {
-                    _selectedOrderMenu.value = orderMenu.copy(icePortion = icePortion)
-                }
-
-                is OrderMenu.Ade -> {
-                    _selectedOrderMenu.value = orderMenu.copy(icePortion = icePortion)
-                }
-
-                is OrderMenu.Desert,
-                is OrderMenu.Tea -> Unit
-            }
-        }
+    fun setIcePortion(icePortion: IcePortion?) {
+        _icePortion.value = icePortion
     }
 }

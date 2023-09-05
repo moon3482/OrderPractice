@@ -27,7 +27,7 @@ class OrderViewModel(
     }
 
     private fun setOrderedMenu() {
-        val name = savedStateHandle.get<String>("menuName1")
+        val name = savedStateHandle.get<String>("menuName")
         val price = savedStateHandle.get<Int>("menuPrice")
         val option = savedStateHandle.get<String>("menuOption")
         if (name == null || price == null || option == null) {

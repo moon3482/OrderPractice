@@ -2,21 +2,17 @@ package com.example.myapplication
 
 import android.graphics.Color
 import android.view.View
-import android.widget.RadioButton
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.detail.DetailUiEvent
 import com.example.myapplication.list.ListUiEvent
 import com.example.myapplication.list.adapter.ListMenuAdapter
 import com.example.myapplication.list.adapter.MenuGroupAdapter
 import com.example.myapplication.list.adapter.MenuGroupDecoration
 import com.example.myapplication.model.ListMenu
 import com.example.myapplication.model.MenuGroup
-import com.example.myapplication.model.OrderMenu
 import com.example.myapplication.order.OrderUiEvent
 import com.example.myapplication.util.toKRWString
 
@@ -55,18 +51,6 @@ fun RecyclerView.setOnClickItem(listUiEvent: ListUiEvent?) {
     }
 }
 
-@BindingAdapter("bind:onClickOrder", "bind:orderMenu")
-fun View.setOnClickOrder(
-    uiEvent: DetailUiEvent?,
-    orderMenu: OrderMenu?,
-) {
-    setOnClickListener {
-        orderMenu?.let { orderMenu ->
-            uiEvent?.onClickOrder(orderMenu)
-        }
-    }
-}
-
 @BindingAdapter("bind:onClickClose")
 fun View.setOnClickClose(orderUiEvent: OrderUiEvent?) {
     setOnClickListener {
@@ -78,25 +62,5 @@ fun View.setOnClickClose(orderUiEvent: OrderUiEvent?) {
 fun Toolbar.setOnClickClose(onClickClose: (() -> Unit)?) {
     setNavigationOnClickListener {
         onClickClose?.invoke()
-    }
-}
-
-@BindingAdapter("bind:checked")
-fun RadioButton.setSelected(checked: Boolean?) {
-    checked?.let { checked ->
-        val drawableId = if (checked)
-            R.drawable.bg_radio_button_selected
-        else
-            R.drawable.bg_radio_button_unselected
-        val backgroundDrawable = ContextCompat.getDrawable(context, drawableId)
-        val colorId = if (checked)
-            R.color.radio_selected
-        else
-            R.color.radio_unselected
-        val textColor = ContextCompat.getColor(context, colorId)
-
-        background = backgroundDrawable
-        setTextColor(textColor)
-        isChecked = checked
     }
 }

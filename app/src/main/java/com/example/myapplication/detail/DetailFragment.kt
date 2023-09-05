@@ -16,10 +16,11 @@ import com.example.myapplication.intro.IntroFragment
 import com.example.myapplication.model.Event
 import com.example.myapplication.model.IcePortion
 import com.example.myapplication.model.ListMenu
+import com.example.myapplication.model.MenuType
 import com.example.myapplication.model.OrderMenu
 import com.example.myapplication.order.OrderFragment
 
-class DetailFragment : Fragment(), DetailUiEvent {
+class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -45,7 +46,60 @@ class DetailFragment : Fragment(), DetailUiEvent {
         with(binding) {
             lifecycleOwner = this@DetailFragment
             vm = viewModel
-            uiEvent = this@DetailFragment
+            tempGroup.setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    R.id.tempHot -> {
+                        viewModel.setTemp(true)
+                        viewModel.setIcePortion(null)
+                    }
+
+                    R.id.tempIce -> viewModel.setTemp(false)
+                }
+            }
+            caffeineGroup.setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    R.id.caffeine -> viewModel.setCaffeine(true)
+                    R.id.deCaffeine -> viewModel.setCaffeine(false)
+                }
+            }
+            iceGroup.setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    R.id.iceSmall -> viewModel.setIcePortion(IcePortion.SMALL)
+                    R.id.iceMedium -> viewModel.setIcePortion(IcePortion.MEDIUM)
+                    R.id.iceLarge -> viewModel.setIcePortion(IcePortion.LARGE)
+                }
+            }
+            sendOrder.setOnClickListener {
+                with(viewModel) {
+                    if (selectedListMenu.value == null)
+                        return@setOnClickListener
+                    val name = selectedListMenu.value!!.name
+                    val price = selectedListMenu.value!!.price
+                    val menuType = selectedListMenu.value!!.menuType
+                    val orderMenu = when (menuType) {
+                        MenuType.COFFEE -> OrderMenu.Coffee(
+                            name,
+                            price,
+                            isHot.value!!,
+                            isCaffeine.value!!,
+                            icePortion.value
+                        )
+
+                        MenuType.ADE -> OrderMenu.Ade(name, price, icePortion.value!!)
+                        MenuType.TEA -> OrderMenu.Tea(name, price, isCaffeine.value!!)
+                        MenuType.DESERT -> OrderMenu.Desert(name, price)
+                    }
+                    parentFragmentManager.commit {
+                        replace<OrderFragment>(
+                            containerViewId = R.id.fragmentContainerView,
+                            args = OrderFragment.arguments(orderMenu)
+                        ).addToBackStack(null)
+                    }
+                }
+            }
+            detailToolbar.setNavigationOnClickListener {
+                requireActivity().onBackPressed()
+            }
         }
         viewModel.event.observe(viewLifecycleOwner) { event ->
             when (event) {
@@ -66,31 +120,6 @@ class DetailFragment : Fragment(), DetailUiEvent {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onChangeTemp(isHot: Boolean) {
-        viewModel.setTemp(isHot)
-    }
-
-    override fun onChangeCaffeine(isCaffeine: Boolean) {
-        viewModel.setCaffeine(isCaffeine)
-    }
-
-    override fun onChangeIcePortion(icePortion: IcePortion) {
-        viewModel.setIcePortion(icePortion)
-    }
-
-    override fun onClickOrder(orderMenu: OrderMenu) {
-        parentFragmentManager.commit {
-            replace<OrderFragment>(
-                containerViewId = R.id.fragmentContainerView,
-                args = OrderFragment.arguments(orderMenu)
-            ).addToBackStack(null)
-        }
-    }
-
-    override fun onClickBack() {
-        requireActivity().onBackPressed()
     }
 
     companion object {

@@ -6,13 +6,11 @@
 
     <data>
 
+        <import type="com.example.myapplication.model.IcePortion" />
+
         <variable
             name="vm"
             type="com.example.myapplication.detail.DetailViewModel" />
-
-        <variable
-            name="uiEvent"
-            type="com.example.myapplication.detail.DetailUiEvent" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,8 +28,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/round_arrow_back_24"
-            bind:onClickBack="@{uiEvent::onClickBack}" />
+            app:navigationIcon="@drawable/round_arrow_back_24" />
 
         <LinearLayout
             android:id="@+id/selectedMenu"
@@ -39,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/detailWidget"
+            app:layout_constraintBottom_toTopOf="@id/options"
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
             app:layout_constraintStart_toStartOf="@id/startGuideLine"
             app:layout_constraintTop_toBottomOf="@id/detailToolbar">
@@ -48,7 +45,7 @@
                 android:id="@+id/selectedMenuName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.selectedOrderMenu.name}"
+                android:text="@{vm.selectedListMenu.name}"
                 tools:text="메뉴이름" />
 
             <androidx.legacy.widget.Space
@@ -61,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                bind:price="@{vm.selectedOrderMenu.price}"
+                bind:price="@{vm.selectedListMenu.price}"
                 tools:text="1000원" />
         </LinearLayout>
 
@@ -267,9 +264,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/bottomGuideLine"
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
-            app:layout_constraintStart_toStartOf="@id/startGuideLine"
-            bind:onClickOrder="@{uiEvent}"
-            bind:orderMenu="@{vm.selectedOrderMenu}" />
+            app:layout_constraintStart_toStartOf="@id/startGuideLine" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/startGuideLine"
