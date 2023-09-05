@@ -12,7 +12,7 @@ import com.example.myapplication.databinding.FragmentIntroBinding
 import com.example.myapplication.list.ListFragment
 
 
-class IntroFragment : Fragment(), IntroUiEvent {
+class IntroFragment : Fragment() {
     private var _binding: FragmentIntroBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -35,21 +35,18 @@ class IntroFragment : Fragment(), IntroUiEvent {
     ) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            lifecycleOwner = this@IntroFragment
-            uiEvent = this@IntroFragment
+            toListPage.setOnClickListener {
+                parentFragmentManager.commit {
+                    replace<ListFragment>(
+                        containerViewId = R.id.fragmentContainerView,
+                    ).addToBackStack(null)
+                }
+            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onClickNext() {
-        parentFragmentManager.commit {
-            replace<ListFragment>(
-                containerViewId = R.id.fragmentContainerView,
-            ).addToBackStack(null)
-        }
     }
 }

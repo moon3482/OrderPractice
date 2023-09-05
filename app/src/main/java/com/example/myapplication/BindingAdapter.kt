@@ -10,7 +10,6 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.detail.DetailUiEvent
-import com.example.myapplication.intro.IntroUiEvent
 import com.example.myapplication.list.ListUiEvent
 import com.example.myapplication.list.adapter.ListMenuAdapter
 import com.example.myapplication.list.adapter.MenuGroupAdapter
@@ -53,13 +52,6 @@ fun RecyclerView.setMenuList(menuList: List<ListMenu>?) {
 fun RecyclerView.setOnClickItem(listUiEvent: ListUiEvent?) {
     (adapter as? ListMenuAdapter)?.setOnClickMenu {
         listUiEvent?.onClickMenu(it)
-    }
-}
-
-@BindingAdapter("bind:onClickNext")
-fun View.setOnClickNext(uiEvent: IntroUiEvent?) {
-    setOnClickListener {
-        uiEvent?.onClickNext()
     }
 }
 
