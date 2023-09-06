@@ -9,10 +9,6 @@
         <variable
             name="vm"
             type="com.example.myapplication.list.ListViewModel" />
-
-        <variable
-            name="uiEvent"
-            type="com.example.myapplication.list.ListUiEvent" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,8 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/round_arrow_back_24"
-            bind:onClickBack="@{uiEvent::onClickBack}" />
+            app:navigationIcon="@drawable/round_arrow_back_24" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/menuGroupListRecyclerView"
@@ -43,9 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/listToolbar"
-            bind:groupList="@{vm.menuGroupList}"
-            bind:onClickChildItem="@{uiEvent}"
-            tools:listitem="@layout/viewholder_menu_group" />
+            bind:menuList="@{vm.menuMenuList}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
