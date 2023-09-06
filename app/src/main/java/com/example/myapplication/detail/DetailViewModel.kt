@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import com.example.myapplication.model.Event
 import com.example.myapplication.model.IcePortion
 import com.example.myapplication.model.ListMenu
-import com.example.myapplication.model.MenuType
 
 class DetailViewModel(
     private val savedStateHandle: SavedStateHandle,
@@ -16,15 +14,9 @@ class DetailViewModel(
     private val _selectedListMenu: MutableLiveData<ListMenu.Menu> = MutableLiveData()
     val selectedListMenu: LiveData<ListMenu.Menu>
         get() = _selectedListMenu
+    private val _isShowIce: MutableLiveData<Boolean> = MutableLiveData()
     val isShowIce
-        get() = _selectedListMenu.map { listMenu ->
-            when (listMenu.menuType) {
-                MenuType.COFFEE -> true
-                MenuType.ADE -> true
-                MenuType.TEA,
-                MenuType.DESERT -> false
-            }
-        }
+        get() = _isShowIce
     private val _isHot: MutableLiveData<Boolean> = MutableLiveData()
     val isHot: LiveData<Boolean>
         get() = _isHot
@@ -61,5 +53,9 @@ class DetailViewModel(
 
     fun setIcePortion(icePortion: IcePortion?) {
         _icePortion.value = icePortion
+    }
+
+    fun setIsShowIce(isShow: Boolean) {
+        _isShowIce.value = isShow
     }
 }

@@ -16,6 +16,7 @@ import com.example.myapplication.intro.IntroFragment
 import com.example.myapplication.model.Event
 import com.example.myapplication.model.IcePortion
 import com.example.myapplication.model.ListMenu
+import com.example.myapplication.model.MenuType
 import com.example.myapplication.model.OrderMenu
 import com.example.myapplication.order.OrderFragment
 
@@ -50,9 +51,18 @@ class DetailFragment : Fragment() {
                     R.id.tempHot -> {
                         viewModel.setTemp(true)
                         viewModel.setIcePortion(null)
+                        viewModel.selectedListMenu.value?.let {
+                            viewModel.setIsShowIce(false)
+                        }
                     }
 
-                    R.id.tempIce -> viewModel.setTemp(false)
+                    R.id.tempIce -> {
+                        viewModel.setTemp(false)
+                        viewModel.selectedListMenu.value?.let { listMenu ->
+                            val isShowIce = listMenu.menuType == MenuType.COFFEE
+                            viewModel.setIsShowIce(isShowIce)
+                        }
+                    }
                 }
             }
             caffeineGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -69,15 +79,45 @@ class DetailFragment : Fragment() {
                 }
             }
             sendOrder.setOnClickListener {
-                with(viewModel) {
-                    if (selectedListMenu.value == null)
-                        return@setOnClickListener
+                viewModel.selectedListMenu.value?.let { listMenu ->
+                    val validateList = mutableListOf<String>()
+                    when (listMenu.menuType) {
+                        MenuType.COFFEE -> {
+                            if (viewModel.isHot.value == null)
+                                validateList.add("온도")
+                            if (viewModel.isCaffeine.value == null)
+                                validateList.add("카페인")
+                            if (viewModel.isHot.value == false && viewModel.icePortion.value == null)
+                                validateList.add("얼음양")
+                        }
+
+                        MenuType.ADE -> {
+                            if (viewModel.icePortion.value == null)
+                                validateList.add("얼음양")
+                        }
+
+                        MenuType.TEA -> {
+                            if (viewModel.isCaffeine.value == null)
+                                validateList.add("카페인")
+                        }
+
+                        MenuType.DESERT -> Unit
+                    }
+                    if (validateList.isNotEmpty()) {
+                        Toast.makeText(
+                            requireContext(),
+                            "${validateList.joinToString(",")}을(를) 선택해 주세요",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return@let
+                    }
+
                     val orderMenu = OrderMenu(
-                        name = selectedListMenu.value!!.name,
-                        price = selectedListMenu.value!!.price,
-                        isHot = isHot.value,
-                        isCaffeine = isCaffeine.value,
-                        icePortion = icePortion.value,
+                        name = listMenu.name,
+                        price = listMenu.price,
+                        isHot = viewModel.isHot.value,
+                        isCaffeine = viewModel.isCaffeine.value,
+                        icePortion = viewModel.icePortion.value,
                     )
                     parentFragmentManager.commit {
                         replace<OrderFragment>(
