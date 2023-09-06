@@ -13,33 +13,13 @@ import com.example.myapplication.model.MenuType
 class DetailViewModel(
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-    private val _selectedListMenu: MutableLiveData<ListMenu> = MutableLiveData()
-    val selectedListMenu: LiveData<ListMenu>
+    private val _selectedListMenu: MutableLiveData<ListMenu.Menu> = MutableLiveData()
+    val selectedListMenu: LiveData<ListMenu.Menu>
         get() = _selectedListMenu
-    val isShowTemp
-        get() = _selectedListMenu.map { listMenu ->
-            when (listMenu.menuType) {
-                MenuType.COFFEE -> true
-                MenuType.ADE,
-                MenuType.TEA,
-                MenuType.DESERT -> false
-            }
-        }
-    val isShowCaffeine
-        get() = _selectedListMenu.map { listMenu ->
-            when (listMenu.menuType) {
-                MenuType.COFFEE,
-                MenuType.TEA -> true
-
-                MenuType.ADE,
-                MenuType.DESERT -> false
-            }
-        }
     val isShowIce
         get() = _selectedListMenu.map { listMenu ->
             when (listMenu.menuType) {
                 MenuType.COFFEE -> true
-
                 MenuType.ADE -> true
                 MenuType.TEA,
                 MenuType.DESERT -> false
@@ -63,14 +43,11 @@ class DetailViewModel(
     }
 
     private fun setSelectedListMenu() {
-        val name = savedStateHandle.get<String>("menuName")
-        val price = savedStateHandle.get<Int>("menuPrice")
-        val menuType = savedStateHandle.get<MenuType>("menuType")
-        if (menuType == null || name == null || price == null) {
+        val listMenu = savedStateHandle.get<ListMenu.Menu>("menu")
+        if (listMenu == null) {
             _event.value = Event.ERROR
             return
         }
-        val listMenu = ListMenu(name, price, menuType)
         _selectedListMenu.value = listMenu
     }
 

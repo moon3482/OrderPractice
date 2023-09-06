@@ -19,7 +19,7 @@ import com.example.myapplication.model.Event
 import com.example.myapplication.model.OrderMenu
 import com.example.myapplication.util.toOptionString
 
-class OrderFragment : Fragment(), OrderUiEvent {
+class OrderFragment : Fragment(){
     private var _binding: FragmentOrderBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -58,7 +58,12 @@ class OrderFragment : Fragment(), OrderUiEvent {
         with(binding) {
             lifecycleOwner = this@OrderFragment
             vm = viewModel
-            uiEvent = this@OrderFragment
+            orderToolbar.setNavigationOnClickListener {
+                navigateToIntro()
+            }
+            close.setOnClickListener {
+                navigateToIntro()
+            }
         }
         viewModel.event.observe(viewLifecycleOwner) { event ->
             when (event) {
@@ -89,14 +94,6 @@ class OrderFragment : Fragment(), OrderUiEvent {
                 containerViewId = R.id.fragmentContainerView,
             )
         }
-    }
-
-    override fun onClickClose() {
-        navigateToIntro()
-    }
-
-    override fun onClickBack() {
-        navigateToIntro()
     }
 
     companion object {

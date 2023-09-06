@@ -81,12 +81,12 @@
                 android:text="@string/defaultTemp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                bind:isVisible="@{vm.isShowTemp}" />
+                bind:isVisible="@{vm.selectedListMenu.isChangTemp}" />
 
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
-                bind:isVisible="@{vm.isShowTemp}" />
+                bind:isVisible="@{vm.selectedListMenu.isChangTemp}" />
 
             <RadioGroup
                 android:id="@+id/tempGroup"
@@ -95,7 +95,7 @@
                 android:divider="@drawable/bg_divider_radio_group"
                 android:orientation="horizontal"
                 android:showDividers="middle"
-                bind:isVisible="@{vm.isShowTemp}">
+                bind:isVisible="@{vm.selectedListMenu.isChangTemp}">
 
                 <RadioButton
                     android:id="@+id/tempHot"
@@ -128,7 +128,7 @@
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                bind:isVisible="@{vm.isShowTemp}" />
+                bind:isVisible="@{vm.selectedListMenu.isChangTemp}" />
 
             <TextView
                 android:id="@+id/caffeineLabel"
@@ -137,12 +137,12 @@
                 android:text="@string/isDeCaffeine"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                bind:isVisible="@{vm.isShowCaffeine}" />
+                bind:isVisible="@{vm.selectedListMenu.isChangCaffeine}" />
 
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
-                bind:isVisible="@{vm.isShowCaffeine}" />
+                bind:isVisible="@{vm.selectedListMenu.isChangCaffeine}" />
 
             <RadioGroup
                 android:id="@+id/caffeineGroup"
@@ -151,7 +151,7 @@
                 android:divider="@drawable/bg_divider_radio_group"
                 android:orientation="horizontal"
                 android:showDividers="middle"
-                bind:isVisible="@{vm.isShowCaffeine}">
+                bind:isVisible="@{vm.selectedListMenu.isChangCaffeine}">
 
                 <RadioButton
                     android:id="@+id/caffeine"
@@ -184,7 +184,7 @@
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                bind:isVisible="@{vm.isShowCaffeine}" />
+                bind:isVisible="@{vm.selectedListMenu.isChangCaffeine}" />
 
             <TextView
                 android:id="@+id/iceLabel"

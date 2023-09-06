@@ -10,9 +10,6 @@
             name="vm"
             type="com.example.myapplication.order.OrderViewModel" />
 
-        <variable
-            name="uiEvent"
-            type="com.example.myapplication.order.OrderUiEvent" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,8 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/round_arrow_back_24"
-            bind:onClickBack="@{uiEvent::onClickBack}" />
+            app:navigationIcon="@drawable/round_arrow_back_24" />
 
         <TextView
             android:id="@+id/menuName"
@@ -81,8 +77,7 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/bottomGuideLine"
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
-            app:layout_constraintStart_toStartOf="@id/startGuideLine"
-            bind:onClickClose="@{uiEvent}" />
+            app:layout_constraintStart_toStartOf="@id/startGuideLine" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/startGuideLine"

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.list.adapter.ListDecorator
 import com.example.myapplication.list.adapter.ListMenuAdapter
 import com.example.myapplication.model.ListMenu
-import com.example.myapplication.order.OrderUiEvent
 import com.example.myapplication.util.toKRWString
 
 @BindingAdapter("bind:price")
@@ -29,11 +28,4 @@ fun RecyclerView.setMenuList(menuList: List<ListMenu>?) {
     val list = menuList ?: emptyList()
     addItemDecoration(ListDecorator(Color.parseColor("#EDF1F4"), 50F))
     (adapter as? ListMenuAdapter)?.setMenuList(list)
-}
-
-@BindingAdapter("bind:onClickClose")
-fun View.setOnClickClose(orderUiEvent: OrderUiEvent?) {
-    setOnClickListener {
-        orderUiEvent?.onClickClose()
-    }
 }

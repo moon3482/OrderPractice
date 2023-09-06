@@ -34,8 +34,8 @@ class OrderViewModel(
             _event.value = Event.ERROR
             return
         }
-        _orderedMenuName.value = name!!
-        _orderedMenuPrice.value = price!!
-        _orderedMenuOption.value = option!!
+        _orderedMenuName.value = name
+        _orderedMenuPrice.value = price
+        _orderedMenuOption.value = option
     }
 }

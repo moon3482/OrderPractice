@@ -16,7 +16,6 @@ import com.example.myapplication.intro.IntroFragment
 import com.example.myapplication.model.Event
 import com.example.myapplication.model.IcePortion
 import com.example.myapplication.model.ListMenu
-import com.example.myapplication.model.MenuType
 import com.example.myapplication.model.OrderMenu
 import com.example.myapplication.order.OrderFragment
 
@@ -73,22 +72,13 @@ class DetailFragment : Fragment() {
                 with(viewModel) {
                     if (selectedListMenu.value == null)
                         return@setOnClickListener
-                    val name = selectedListMenu.value!!.name
-                    val price = selectedListMenu.value!!.price
-                    val menuType = selectedListMenu.value!!.menuType
-                    val orderMenu = when (menuType) {
-                        MenuType.COFFEE -> OrderMenu.Coffee(
-                            name,
-                            price,
-                            isHot.value!!,
-                            isCaffeine.value!!,
-                            icePortion.value
-                        )
-
-                        MenuType.ADE -> OrderMenu.Ade(name, price, icePortion.value!!)
-                        MenuType.TEA -> OrderMenu.Tea(name, price, isCaffeine.value!!)
-                        MenuType.DESERT -> OrderMenu.Desert(name, price)
-                    }
+                    val orderMenu = OrderMenu(
+                        name = selectedListMenu.value!!.name,
+                        price = selectedListMenu.value!!.price,
+                        isHot = isHot.value,
+                        isCaffeine = isCaffeine.value,
+                        icePortion = icePortion.value,
+                    )
                     parentFragmentManager.commit {
                         replace<OrderFragment>(
                             containerViewId = R.id.fragmentContainerView,
@@ -124,9 +114,7 @@ class DetailFragment : Fragment() {
 
     companion object {
         fun arguments(listMenu: ListMenu): Bundle = Bundle().apply {
-            putString("menuName", listMenu.name)
-            putInt("menuPrice", listMenu.price)
-            putSerializable("menuType", listMenu.menuType)
+            putSerializable("menu", listMenu)
         }
     }
 }
