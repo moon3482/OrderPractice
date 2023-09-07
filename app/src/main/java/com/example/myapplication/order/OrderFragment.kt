@@ -9,17 +9,14 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
-import com.example.myapplication.R
+import com.example.myapplication.FragmentName
 import com.example.myapplication.databinding.FragmentOrderBinding
-import com.example.myapplication.intro.IntroFragment
 import com.example.myapplication.model.Event
 import com.example.myapplication.model.OrderMenu
 import com.example.myapplication.util.toOptionString
 
-class OrderFragment : Fragment(){
+class OrderFragment : Fragment() {
     private var _binding: FragmentOrderBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -69,13 +66,7 @@ class OrderFragment : Fragment(){
             when (event) {
                 Event.ERROR -> {
                     Toast.makeText(requireContext(), "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show()
-                    parentFragmentManager.popBackStack(
-                        null,
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE
-                    )
-                    parentFragmentManager.commit {
-                        replace<IntroFragment>(R.id.fragmentContainerView)
-                    }
+                    navigateToIntro()
                 }
             }
         }
@@ -88,12 +79,10 @@ class OrderFragment : Fragment(){
     }
 
     private fun navigateToIntro() {
-        parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        parentFragmentManager.commit {
-            replace<IntroFragment>(
-                containerViewId = R.id.fragmentContainerView,
-            )
-        }
+        parentFragmentManager.popBackStack(
+            FragmentName.INTRO,
+            FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
     }
 
     companion object {

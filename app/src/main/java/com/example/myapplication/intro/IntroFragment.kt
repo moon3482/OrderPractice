@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import com.example.myapplication.FragmentName
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentIntroBinding
 import com.example.myapplication.list.ListFragment
@@ -37,9 +38,9 @@ class IntroFragment : Fragment() {
         with(binding) {
             toListPage.setOnClickListener {
                 parentFragmentManager.commit {
-                    replace<ListFragment>(
+                    add<ListFragment>(
                         containerViewId = R.id.fragmentContainerView,
-                    ).addToBackStack(null)
+                    ).addToBackStack(FragmentName.INTRO)
                 }
             }
         }

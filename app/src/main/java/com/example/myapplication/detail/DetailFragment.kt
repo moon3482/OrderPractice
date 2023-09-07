@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
+import com.example.myapplication.FragmentName
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDetailBinding
-import com.example.myapplication.intro.IntroFragment
 import com.example.myapplication.model.Event
 import com.example.myapplication.model.IcePortion
 import com.example.myapplication.model.ListMenu
@@ -124,10 +124,10 @@ class DetailFragment : Fragment() {
                         icePortion = viewModel.icePortion.value,
                     )
                     parentFragmentManager.commit {
-                        replace<OrderFragment>(
+                        add<OrderFragment>(
                             containerViewId = R.id.fragmentContainerView,
                             args = OrderFragment.arguments(orderMenu)
-                        ).addToBackStack(null)
+                        ).addToBackStack(FragmentName.DETAIL)
                     }
                 }
             }
@@ -139,12 +139,11 @@ class DetailFragment : Fragment() {
             when (event) {
                 Event.ERROR -> {
                     Toast.makeText(requireContext(), "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show()
-                    parentFragmentManager.popBackStack(
-                        null,
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE
-                    )
                     parentFragmentManager.commit {
-                        replace<IntroFragment>(R.id.fragmentContainerView)
+                        parentFragmentManager.popBackStack(
+                            FragmentName.INTRO,
+                            FragmentManager.POP_BACK_STACK_INCLUSIVE
+                        )
                     }
                 }
             }

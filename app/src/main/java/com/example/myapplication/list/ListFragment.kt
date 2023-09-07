@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.fragment.app.viewModels
+import com.example.myapplication.FragmentName
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentListBinding
 import com.example.myapplication.detail.DetailFragment
@@ -24,10 +25,10 @@ class ListFragment : Fragment() {
     private val viewModel: ListViewModel by viewModels()
     private val itemClick: (ListMenu) -> Unit = { listMenu ->
         parentFragmentManager.commit {
-            replace<DetailFragment>(
+            add<DetailFragment>(
                 containerViewId = R.id.fragmentContainerView,
                 args = DetailFragment.arguments(listMenu)
-            ).addToBackStack(null)
+            ).addToBackStack(FragmentName.LIST)
         }
     }
 
