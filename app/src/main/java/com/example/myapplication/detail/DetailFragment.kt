@@ -111,7 +111,11 @@ class DetailFragment : Fragment() {
                         ).show()
                         return@let
                     }
-
+                    when (listMenu.menuType) {
+                        MenuType.TEA -> viewModel.setTemp(true)
+                        MenuType.ADE -> viewModel.setTemp(false)
+                        else -> Unit
+                    }
                     val orderMenu = OrderMenu(
                         name = listMenu.name,
                         price = listMenu.price,
