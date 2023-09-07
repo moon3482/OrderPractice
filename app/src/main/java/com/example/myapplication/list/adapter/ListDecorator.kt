@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.model.ViewHolderType
+import com.example.myapplication.ViewHolderType
 
 class ListDecorator(
     @ColorInt

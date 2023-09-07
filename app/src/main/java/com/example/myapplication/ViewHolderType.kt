@@ -1,4 +1,4 @@
-package com.example.myapplication.model
+package com.example.myapplication
 
 object ViewHolderType {
     const val HEADER = 1
