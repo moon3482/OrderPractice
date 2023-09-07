@@ -18,9 +18,7 @@ fun TextView.setPrice(price: Int) {
 
 @BindingAdapter("bind:isVisible")
 fun View.isVisible(isVisible: Boolean?) {
-    isVisible?.let { isVisible ->
-        this.isVisible = isVisible
-    }
+    this.isVisible = isVisible ?: false
 }
 
 @BindingAdapter("bind:menuList")
