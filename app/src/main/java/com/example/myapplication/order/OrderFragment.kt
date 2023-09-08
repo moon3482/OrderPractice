@@ -14,6 +14,7 @@ import com.example.myapplication.FragmentName
 import com.example.myapplication.databinding.FragmentOrderBinding
 import com.example.myapplication.model.Event
 import com.example.myapplication.model.OrderMenu
+import com.example.myapplication.util.toKRWString
 import com.example.myapplication.util.toOptionString
 
 class OrderFragment : Fragment() {
@@ -54,9 +55,12 @@ class OrderFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.clearEvent()
+        viewModel.setOrderedMenu()
         with(binding) {
-            lifecycleOwner = this@OrderFragment
-            vm = viewModel
+            menuName.text = viewModel.orderedMenuName
+            manuPrice.text = viewModel.orderedMenuPrice?.toKRWString()
+            menuOption.text = viewModel.orderedMenuOption
             orderToolbar.setNavigationOnClickListener {
                 navigateToIntro()
             }
@@ -70,6 +74,8 @@ class OrderFragment : Fragment() {
                     Toast.makeText(requireContext(), "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show()
                     navigateToIntro()
                 }
+
+                else -> Unit
             }
         }
     }

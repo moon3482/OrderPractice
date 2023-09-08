@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="vm"
-            type="com.example.myapplication.order.OrderViewModel" />
-
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,7 +26,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{vm.orderedMenuName}"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/menuOption"
@@ -54,14 +44,12 @@
             app:layout_constraintBottom_toBottomOf="@id/menuOption"
             app:layout_constraintEnd_toEndOf="@id/endGuideLine"
             app:layout_constraintTop_toTopOf="@id/menuName"
-            bind:price="@{vm.orderedMenuPrice}"
             tools:text="1000원" />
 
         <TextView
             android:id="@+id/menuOption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{vm.orderedMenuOption}"
             app:layout_constraintEnd_toStartOf="@id/manuPrice"
             app:layout_constraintStart_toStartOf="@id/startGuideLine"
             app:layout_constraintTop_toBottomOf="@id/menuName"
