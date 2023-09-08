@@ -23,18 +23,20 @@ class OrderFragment : Fragment() {
             "FragmentOrderBinding is Null"
         }
     private val viewModel: OrderViewModel by viewModels()
-    private lateinit var backPressedCallback: OnBackPressedCallback
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        backPressedCallback = object : OnBackPressedCallback(true) {
+        val backPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 navigateToIntro()
             }
         }
         requireActivity()
             .onBackPressedDispatcher
-            .addCallback(backPressedCallback)
+            .addCallback(
+                owner = this,
+                onBackPressedCallback = backPressedCallback,
+            )
     }
 
     override fun onCreateView(
@@ -75,7 +77,6 @@ class OrderFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        backPressedCallback.remove()
     }
 
     private fun navigateToIntro() {
