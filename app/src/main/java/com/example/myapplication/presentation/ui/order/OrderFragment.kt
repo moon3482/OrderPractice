@@ -1,4 +1,4 @@
-package com.example.myapplication.order
+package com.example.myapplication.presentation.ui.order
 
 import android.content.Context
 import android.os.Bundle
@@ -10,10 +10,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
-import com.example.myapplication.FragmentName
 import com.example.myapplication.databinding.FragmentOrderBinding
-import com.example.myapplication.model.Event
-import com.example.myapplication.model.OrderMenu
+import com.example.myapplication.presentation.model.Event
+import com.example.myapplication.presentation.model.OrderMenu
+import com.example.myapplication.presentation.ui.FragmentName
 import com.example.myapplication.util.toKRWString
 import com.example.myapplication.util.toOptionString
 

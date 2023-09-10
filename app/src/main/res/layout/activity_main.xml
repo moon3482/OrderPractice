@@ -6,11 +6,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".presentation.ui.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
-            android:name="com.example.myapplication.intro.IntroFragment"
+            android:name="com.example.myapplication.presentation.ui.intro.IntroFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

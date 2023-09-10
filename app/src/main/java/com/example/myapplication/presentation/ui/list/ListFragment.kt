@@ -1,4 +1,4 @@
-package com.example.myapplication.list
+package com.example.myapplication.presentation.ui.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
-import com.example.myapplication.FragmentName
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentListBinding
-import com.example.myapplication.detail.DetailFragment
-import com.example.myapplication.list.adapter.ListMenuAdapter
-import com.example.myapplication.model.ListMenu
+import com.example.myapplication.presentation.model.ListMenu
+import com.example.myapplication.presentation.ui.FragmentName
+import com.example.myapplication.presentation.ui.detail.DetailFragment
+import com.example.myapplication.presentation.ui.list.adapter.ListMenuAdapter
 
 
 class ListFragment : Fragment() {

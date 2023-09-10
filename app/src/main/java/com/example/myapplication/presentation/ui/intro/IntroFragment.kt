@@ -1,4 +1,4 @@
-package com.example.myapplication.intro
+package com.example.myapplication.presentation.ui.intro
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import com.example.myapplication.FragmentName
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentIntroBinding
-import com.example.myapplication.list.ListFragment
+import com.example.myapplication.presentation.ui.FragmentName
+import com.example.myapplication.presentation.ui.list.ListFragment
 
 
 class IntroFragment : Fragment() {

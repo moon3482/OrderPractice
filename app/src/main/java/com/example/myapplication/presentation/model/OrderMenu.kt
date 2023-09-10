@@ -1,4 +1,4 @@
-package com.example.myapplication.model
+package com.example.myapplication.presentation.model
 
 
 data class OrderMenu(

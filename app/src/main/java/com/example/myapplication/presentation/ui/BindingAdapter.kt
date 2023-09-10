@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.presentation.ui
 
 import android.graphics.Color
 import android.view.View
@@ -6,9 +6,9 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.list.adapter.ListDecorator
-import com.example.myapplication.list.adapter.ListMenuAdapter
-import com.example.myapplication.model.ListMenu
+import com.example.myapplication.presentation.ui.list.adapter.ListDecorator
+import com.example.myapplication.presentation.ui.list.adapter.ListMenuAdapter
+import com.example.myapplication.presentation.model.ListMenu
 import com.example.myapplication.util.toKRWString
 
 @BindingAdapter("bind:price")

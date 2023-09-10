@@ -1,8 +1,8 @@
-package com.example.myapplication.list
+package com.example.myapplication.presentation.ui.list
 
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.model.ListMenu
-import com.example.myapplication.model.MenuType
+import com.example.myapplication.presentation.model.ListMenu
+import com.example.myapplication.presentation.model.MenuType
 
 class ListViewModel : ViewModel() {
     private val _menuMenuList: MutableList<ListMenu> = mutableListOf()

@@ -1,12 +1,12 @@
-package com.example.myapplication.detail
+package com.example.myapplication.presentation.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.model.Event
-import com.example.myapplication.model.IcePortion
-import com.example.myapplication.model.ListMenu
+import com.example.myapplication.presentation.model.Event
+import com.example.myapplication.presentation.model.IcePortion
+import com.example.myapplication.presentation.model.ListMenu
 
 class DetailViewModel(
     private val savedStateHandle: SavedStateHandle,

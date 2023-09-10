@@ -1,10 +1,10 @@
-package com.example.myapplication.list.adapter
+package com.example.myapplication.presentation.ui.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ViewholderListMenuBinding
-import com.example.myapplication.model.ListMenu
+import com.example.myapplication.presentation.model.ListMenu
 
 class ListMenuViewHolder(
     private val binding: ViewholderListMenuBinding,

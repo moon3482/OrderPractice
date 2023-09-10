@@ -6,18 +6,18 @@
 
     <data>
 
-        <import type="com.example.myapplication.model.IcePortion" />
+        <import type="com.example.myapplication.presentation.model.IcePortion" />
 
         <variable
             name="vm"
-            type="com.example.myapplication.detail.DetailViewModel" />
+            type="com.example.myapplication.presentation.ui.detail.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".detail.DetailFragment">
+        tools:context=".presentation.ui.detail.DetailFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/detailToolbar"

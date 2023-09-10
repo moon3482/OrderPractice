@@ -1,12 +1,12 @@
 package com.example.myapplication.util
 
-import com.example.myapplication.model.IcePortion
-import com.example.myapplication.model.OrderMenu
+import com.example.myapplication.presentation.model.IcePortion
+import com.example.myapplication.presentation.model.OrderMenu
 import java.text.DecimalFormat
 
 val decimalFormat = DecimalFormat("#,###")
 fun Int.toKRWString(): String = "${decimalFormat.format(this)}원"
-fun OrderMenu.toOptionString(): String{
+fun OrderMenu.toOptionString(): String {
     val optionList = mutableListOf<String>()
     when (isHot) {
         true -> optionList.add("HOT")

@@ -1,4 +1,4 @@
-package com.example.myapplication.detail
+package com.example.myapplication.presentation.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,15 +10,15 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
-import com.example.myapplication.FragmentName
+import com.example.myapplication.presentation.ui.FragmentName
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentDetailBinding
-import com.example.myapplication.model.Event
-import com.example.myapplication.model.IcePortion
-import com.example.myapplication.model.ListMenu
-import com.example.myapplication.model.MenuType
-import com.example.myapplication.model.OrderMenu
-import com.example.myapplication.order.OrderFragment
+import com.example.myapplication.presentation.model.Event
+import com.example.myapplication.presentation.model.IcePortion
+import com.example.myapplication.presentation.model.ListMenu
+import com.example.myapplication.presentation.model.MenuType
+import com.example.myapplication.presentation.model.OrderMenu
+import com.example.myapplication.presentation.ui.order.OrderFragment
 
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null

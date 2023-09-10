@@ -1,9 +1,9 @@
-package com.example.myapplication.list.adapter
+package com.example.myapplication.presentation.ui.list.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.model.ListMenu
-import com.example.myapplication.ViewHolderType
+import com.example.myapplication.presentation.model.ListMenu
+import com.example.myapplication.presentation.ui.list.ViewHolderType
 
 class ListMenuAdapter(
     private val menuList: MutableList<ListMenu> = mutableListOf(),

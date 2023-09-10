@@ -1,4 +1,4 @@
-package com.example.myapplication.list.adapter
+package com.example.myapplication.presentation.ui.list.adapter
 
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.ViewHolderType
+import com.example.myapplication.presentation.ui.list.ViewHolderType
 
 class ListDecorator(
     @ColorInt

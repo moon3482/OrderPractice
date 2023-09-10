@@ -1,10 +1,10 @@
-package com.example.myapplication.order
+package com.example.myapplication.presentation.ui.order
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.model.Event
+import com.example.myapplication.presentation.model.Event
 
 class OrderViewModel(
     private val savedStateHandle: SavedStateHandle,
@@ -35,7 +35,7 @@ class OrderViewModel(
         _orderedMenuOption = option
     }
 
-    fun clearEvent(){
+    fun clearEvent() {
         _event.value = null
     }
 }

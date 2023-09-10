@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.presentation.ui
 
 object FragmentName {
     const val INTRO = "intro"

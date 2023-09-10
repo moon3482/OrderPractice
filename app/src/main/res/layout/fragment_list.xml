@@ -8,14 +8,14 @@
 
         <variable
             name="vm"
-            type="com.example.myapplication.list.ListViewModel" />
+            type="com.example.myapplication.presentation.ui.list.ListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".list.ListFragment">
+        tools:context=".presentation.ui.list.ListFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/listToolbar"
