@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.myapplication.presentation.model.Event
 import com.example.myapplication.presentation.model.IcePortion
 import com.example.myapplication.presentation.model.ListMenu
+import com.example.myapplication.presentation.model.MenuType
 
 class DetailViewModel(
     private val savedStateHandle: SavedStateHandle,
@@ -41,6 +42,10 @@ class DetailViewModel(
             return
         }
         _selectedListMenu.value = listMenu
+        when (listMenu.menuType) {
+            MenuType.ADE -> _isShowIce.value = true
+            else -> Unit
+        }
     }
 
     fun setTemp(isHot: Boolean) {
