@@ -10,6 +10,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentListBinding
+import com.example.myapplication.domain.GetMenuListUsecase
 import com.example.myapplication.presentation.model.ListMenu
 import com.example.myapplication.presentation.ui.FragmentName
 import com.example.myapplication.presentation.ui.detail.DetailFragment
@@ -22,7 +23,9 @@ class ListFragment : Fragment() {
         get() = checkNotNull(_binding) {
             "FragmentListBinding is Null"
         }
-    private val viewModel: ListViewModel by viewModels()
+    private val viewModel: ListViewModel by viewModels {
+        ListViewModelFactory(GetMenuListUsecase())
+    }
     private val itemClick: (ListMenu) -> Unit = { listMenu ->
         parentFragmentManager.commit {
             add<DetailFragment>(
